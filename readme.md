@@ -4,3 +4,6 @@ http://tieba.baidu.com/p/3755692411
 
 nginx的开源
 http://tengine.taobao.org/
+
+https://github.com/jquery
+
