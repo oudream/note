@@ -12,3 +12,6 @@ http://pbskids.org/games/
 
 十个儿童英文学习网站
 http://baobao.sohu.com/w/news/407537311.shtml
+
+Sublime Text 2开发你的javascript
+http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
