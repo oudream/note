@@ -9,3 +9,6 @@ https://github.com/jquery
 
 工程游戏，小朋友
 http://pbskids.org/games/
+
+十个儿童英文学习网站
+http://baobao.sohu.com/w/news/407537311.shtml
