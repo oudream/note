@@ -19,3 +19,6 @@ http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
 安装node.js
 \#npm install -g mocha
 \#npm install -g expect.js
+
+跨平台 移动开发
+http://fex.baidu.com/blog/2015/05/cross-mobile/
