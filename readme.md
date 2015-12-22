@@ -22,3 +22,11 @@ http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
 
 跨平台 移动开发
 http://fex.baidu.com/blog/2015/05/cross-mobile/
+
+svg 
+教程 http://www.w3school.com.cn/svg/svg_reference.asp
+在线编辑 https://github.com/SVG-Edit/svgedit
+标准 http://www.w3.org/TR/SVG/
+d3_样例 https://github.com/mbostock/d3/wiki/Gallery
+d3_API手册 https://github.com/mbostock/d3/wiki/API--%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C
+d3_教程 https://github.com/mbostock/d3/wiki/Tutorials
