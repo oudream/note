@@ -30,6 +30,7 @@ svg
 d3_样例 https://github.com/mbostock/d3/wiki/Gallery
 d3_API手册 https://github.com/mbostock/d3/wiki/API--%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C
 d3_教程 https://github.com/mbostock/d3/wiki/Tutorials
+微软 https://msdn.microsoft.com/zh-cn/library/gg589526(v=vs.85).aspx
 
 w3规范 http://www.w3.org/TR/tr-technology-stds
 w3规范-html http://www.w3.org/TR/2014/REC-html5-20141028/
