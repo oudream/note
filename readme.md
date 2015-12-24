@@ -35,3 +35,45 @@ d3_教程 https://github.com/mbostock/d3/wiki/Tutorials
 w3规范 http://www.w3.org/TR/tr-technology-stds
 w3规范-html http://www.w3.org/TR/2014/REC-html5-20141028/
 w3规范-http http://www.w3.org/Protocols/rfc2616/rfc2616.txt
+
+
+
+<html xmlns:svg="http://www.w3.org/2000/svg">
+<head>svg sample</head>
+
+<body>
+
+
+<svg width="720" height="120">
+</svg>
+
+
+<script src="./d3/d3.js"></script>
+<script>
+
+    var svg = d3.select("svg");
+    var circle = svg.selectAll("circle")
+            .data([1, 50, 3, 4]);
+    var circleEnter = circle.enter().append("circle");
+    circleEnter.attr("cy", 60);
+    circleEnter.attr("cx", function(d, i) { return i * 100 + 30; });
+    circleEnter.attr("r", function(d, i) { return Math.sqrt(d*i); });
+
+    var t = setTimeout("fn_timeOut()", 1000);
+
+    var count = 0;
+
+    function fn_timeOut() {
+        var body1 = d3.select("body");
+        var label1 = body1.append("label");
+        label1.text("count="+(++count));
+        var div1 = label1.append("br");
+        t = setTimeout("fn_timeOut()", 1000);
+    }
+
+</script>
+
+
+
+</body>
+</html>
