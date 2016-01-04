@@ -41,4 +41,4 @@ w3规范 http://www.w3.org/TR/tr-technology-stds
 w3规范-html http://www.w3.org/TR/2014/REC-html5-20141028/
 w3规范-http http://www.w3.org/Protocols/rfc2616/rfc2616.txt
 
-win10 http://www.zdfans.com/6259.html
+win10 http://www.zdfans.com/6259.html http://www.yile66.com/
