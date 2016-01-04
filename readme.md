@@ -42,3 +42,5 @@ w3规范-html http://www.w3.org/TR/2014/REC-html5-20141028/
 w3规范-http http://www.w3.org/Protocols/rfc2616/rfc2616.txt
 
 win10 http://www.zdfans.com/6259.html http://www.yile66.com/
+
+javascript编程规范 https://github.com/fex-team/styleguide/blob/master/javascript.md#421-%E5%85%83%E7%B4%A0%E8%8E%B7%E5%8F%96 http://alloyteam.github.io/JX/doc/specification/google-javascript.xml http://blog.jobbole.com/19197/
