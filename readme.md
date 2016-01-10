@@ -50,4 +50,4 @@ Github迁移-Cookies攻击 http://www.oschina.net/translate/yummy-cookies-across
 react.js 
 react-native中文 http://reactnative.cn/docs/getting-started.html http://wiki.jikexueyuan.com/project/react-native/
 
-node.js 模块加载 https://cnodejs.org/topic/55b044399594740e76ab3e91 https://cnodejs.org/topic/55b044399594740e76ab3e91 http://www.infoq.com/cn/articles/nodejs-module-mechanism http://www.ibm.com/developerworks/cn/mobile/mo-bluemix-react-native-ios8/
+node.js 模块加载 https://cnodejs.org/topic/55b044399594740e76ab3e91 https://cnodejs.org/topic/55b044399594740e76ab3e91 http://www.infoq.com/cn/articles/nodejs-module-mechanism http://www.ibm.com/developerworks/cn/mobile/mo-bluemix-react-native-ios8/ http://1ke.co/course/269
