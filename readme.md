@@ -30,6 +30,9 @@ d3_教程 https://github.com/mbostock/d3/wiki/Tutorials
 w3规范-html http://www.w3.org/TR/2014/REC-html5-20141028/
 w3规范-http http://www.w3.org/Protocols/rfc2616/rfc2616.txt
 
+## nginx ##
+Nginx开发从入门到精通 http://tengine.taobao.org/book/index.html
+
 ## win10 ## http://www.zdfans.com/6259.html http://www.yile66.com/
 
 ## 开源网址 ##
