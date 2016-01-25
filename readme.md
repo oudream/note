@@ -1,8 +1,12 @@
+## 机器学习API ##
+http://www.infoq.com/cn/news/2015/12/5-best-ml-api-to-use
+Aragog：Pinterest的爬虫框架 http://www.infoq.com/cn/news/2015/12/Pinterest-Web-URL
+
 ## 大数据 ##
 评论 http://www.infoq.com/cn/news/2015/12/Spark-Hadoop-HDFS
-Spark http://spark.apache.org/
+Spark http://spark.apache.org/ https://github.com/jacksu/utils4s
 机器学习库MLib http://spark.apache.org/mllib/ http://mahout.apache.org/
-Hadoop https://hadoop.apache.org/
+Hadoop https://hadoop.apache.org/ http://shiyanjun.cn/archives/1097.html
 
 ## baas ##
 http://www.infoq.com/cn/articles/the-definition-development-and-future-of-baas-services
