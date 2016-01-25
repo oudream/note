@@ -1,4 +1,5 @@
 ## 大数据 ##
+评论 http://www.infoq.com/cn/news/2015/12/Spark-Hadoop-HDFS
 Spark http://spark.apache.org/
 机器学习库MLib http://spark.apache.org/mllib/ http://mahout.apache.org/
 Hadoop https://hadoop.apache.org/
