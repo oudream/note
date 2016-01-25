@@ -1,3 +1,7 @@
+## 大数据 ##
+Spark http://spark.apache.org/
+机器学习库MLib http://spark.apache.org/mllib/ http://mahout.apache.org/
+Hadoop https://hadoop.apache.org/
 
 ## baas ##
 http://www.infoq.com/cn/articles/the-definition-development-and-future-of-baas-services
