@@ -6,7 +6,7 @@ Aragog：Pinterest的爬虫框架 http://www.infoq.com/cn/news/2015/12/Pinterest
 评论 http://www.infoq.com/cn/news/2015/12/Spark-Hadoop-HDFS
 Spark http://spark.apache.org/ https://github.com/jacksu/utils4s
 机器学习库MLib http://spark.apache.org/mllib/ http://mahout.apache.org/
-Hadoop https://hadoop.apache.org/ http://shiyanjun.cn/archives/1097.html
+Hadoop https://hadoop.apache.org/ http://shiyanjun.cn/archives/1097.html http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1508biginsights-bigsql-json1/
 json Kinto http://www.infoq.com/cn/news/2015/12/introducing-kinto
 OpenStack https://github.com/openstack http://www.ibm.com/developerworks/cn/cloud/library/cl-openstack-cloud/
 
