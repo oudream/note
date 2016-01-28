@@ -34,6 +34,7 @@ http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 javascript编程规范 https://github.com/fex-team/styleguide/blob/master/javascript.md#421-%E5%85%83%E7%B4%A0%E8%8E%B7%E5%8F%96 http://alloyteam.github.io/JX/doc/specification/google-javascript.xml http://blog.jobbole.com/19197/
 jQuery https://github.com/jquery
 json在线编辑器 http://www.jsoneditoronline.org/
+模块 http://justineo.github.io/singles/writing-modular-js/ https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)
 
 ## svg ##
 教程 http://www.w3school.com.cn/svg/svg_reference.asp
