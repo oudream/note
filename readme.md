@@ -35,6 +35,7 @@ javascript编程规范 https://github.com/fex-team/styleguide/blob/master/javasc
 jQuery https://github.com/jquery
 json在线编辑器 http://www.jsoneditoronline.org/
 模块 http://justineo.github.io/singles/writing-modular-js/ https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)
+ https://www.ibm.com/developerworks/cn/web/1209_shiwei_requirejs/
 
 ## svg ##
 教程 http://www.w3school.com.cn/svg/svg_reference.asp
