@@ -1,5 +1,11 @@
 排名 http://db-engines.com/en/ranking/document+store
 
+## mongodb ##
+安装 http://www.runoob.com/mongodb/mongodb-window-install.html
+
+## redis ##
+安装 http://www.runoob.com/redis/redis-install.html
+
 ## couchdb ##
 https://wiki.apache.org/couchdb/Partial_Updates  http://docs.couchdb.org/en/1.6.1/contents.html  https://cwiki.apache.org/confluence/display/COUCHDB/Apache+CouchDB+Wiki  http://www.infoq.com/cn/news/2012/09/why-hasen-chose-couchDB
 
