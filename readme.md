@@ -26,7 +26,7 @@ http://www.infoq.com/cn/articles/the-definition-development-and-future-of-baas-s
 https://leancloud.cn/
 http://www.bmob.cn/
 
-## node.js ##
+## node.js ## https://zh.wikipedia.org/wiki/Node.js
 模块加载 https://cnodejs.org/topic/55b044399594740e76ab3e91 https://cnodejs.org/topic/55b044399594740e76ab3e91 http://www.infoq.com/cn/articles/nodejs-module-mechanism http://www.ibm.com/developerworks/cn/mobile/mo-bluemix-react-native-ios8/ http://1ke.co/course/269
 api参考 http://nodejs.cn/api/
 安装node.js   \#npm install -g mocha   \#npm install -g expect.js
