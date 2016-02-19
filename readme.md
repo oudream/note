@@ -1,5 +1,9 @@
 排名 http://db-engines.com/en/ranking/document+store
 
+## job scheduling ##
+https://www.ibm.com/developerworks/cn/opensource/os-cn-quartz/ 
+https://www.ibm.com/developerworks/cn/java/j-quartz/
+
 ## mongodb ##
 安装 http://www.runoob.com/mongodb/mongodb-window-install.html
 
