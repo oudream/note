@@ -82,5 +82,6 @@ Sublime Text 2开发你的javascript http://www.cnblogs.com/xiaopen/archive/2012
 Github迁移-Cookies攻击 http://www.oschina.net/translate/yummy-cookies-across-domains
 webStorm注册 http://idea.lanyus.com/
 沟宝ＵＥＤ：http://ued.taobao.org/blog/
+远光共创  http://10.121.0.183:9080/grm/fuel.portal/mis/main.html 业务管理员/123456
 
 
