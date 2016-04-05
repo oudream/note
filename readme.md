@@ -37,7 +37,10 @@ api参考 http://nodejs.cn/api/
 
 ## react 与 react-native ##
 react-native中文 http://reactnative.cn/docs/getting-started.html http://wiki.jikexueyuan.com/project/react-native/
+https://facebook.github.io/react-native/docs/getting-started.html
 https://github.com/ele828/react-native-guide
+http://www.bkjia.com/Androidjc/1116165.html 
+http://www.aliog.com/100870.html
 
 ## restful ##
 http://www.ruanyifeng.com/blog/2014/05/restful_api.html
