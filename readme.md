@@ -42,6 +42,9 @@ https://github.com/ele828/react-native-guide
 http://www.bkjia.com/Androidjc/1116165.html 
 http://www.aliog.com/100870.html
 
+## android ##
+Gradle http://www.cnblogs.com/haochuang/p/4676510.html
+
 ## restful ##
 http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 
@@ -81,6 +84,12 @@ w3规范-http http://www.w3.org/Protocols/rfc2616/rfc2616.txt
 Nginx开发从入门到精通 http://tengine.taobao.org/book/index.html
 
 ## win10 ## http://www.zdfans.com/6259.html http://www.yile66.com/
+
+## window 命令 ##
+https://zh.wikipedia.org/wiki/MS-DOS%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8
+
+## unix 命令##
+https://zh.wikipedia.org/wiki/Unix%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%97%E8%A1%A8
 
 ## 开源网址 ##
 nginx的开源 http://tengine.taobao.org/
