@@ -41,6 +41,7 @@ https://facebook.github.io/react-native/docs/getting-started.html
 https://github.com/ele828/react-native-guide
 http://www.bkjia.com/Androidjc/1116165.html 
 http://www.aliog.com/100870.html
+http://www.lcode.org/
 
 ## android ##
 Gradle http://www.cnblogs.com/haochuang/p/4676510.html
