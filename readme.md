@@ -36,7 +36,7 @@ api参考 http://nodejs.cn/api/
 安装node.js   \#npm install -g mocha   \#npm install -g expect.js
 
 ## react 与 react-native ##
-react-native中文 http://reactnative.cn/docs/getting-started.html http://wiki.jikexueyuan.com/project/react-native/
+react-native中文 http://reactnative.cn/docs/getting-started.html 
 https://facebook.github.io/react-native/docs/getting-started.html
 https://github.com/ele828/react-native-guide
 http://www.bkjia.com/Androidjc/1116165.html 
