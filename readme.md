@@ -96,6 +96,10 @@ https://zh.wikipedia.org/wiki/Unix%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%97%
 ## 开源网址 ##
 nginx的开源 http://tengine.taobao.org/
 
+## ftp ##
+http://my.oschina.net/pathenon/blog/66154
+https://curl.haxx.se/libcurl/c/
+
 ## blog 博客 ##
 跨平台 移动开发 http://fex.baidu.com/blog/2015/05/cross-mobile/
 Sublime Text 2开发你的javascript http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
