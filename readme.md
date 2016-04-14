@@ -100,6 +100,11 @@ nginx的开源 http://tengine.taobao.org/
 http://my.oschina.net/pathenon/blog/66154
 https://curl.haxx.se/libcurl/c/
 
+## ssh ##
+http://www.ibm.com/developerworks/cn/aix/library/1006_lisali_sshlogon/
+https://www.ibm.com/developerworks/cn/linux/security/openssh/part1/
+https://github.com/PowerShell/Win32-OpenSSH
+
 ## blog 博客 ##
 跨平台 移动开发 http://fex.baidu.com/blog/2015/05/cross-mobile/
 Sublime Text 2开发你的javascript http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
