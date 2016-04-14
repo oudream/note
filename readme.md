@@ -103,6 +103,7 @@ http://www.ibm.com/developerworks/cn/aix/library/1006_lisali_sshlogon/
 https://www.ibm.com/developerworks/cn/linux/security/openssh/part1/
 https://github.com/PowerShell/Win32-OpenSSH
 https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8
+https://en.wikipedia.org/wiki/Comparison_of_SSH_servers
 
 ## blog 博客 ##
 跨平台 移动开发 http://fex.baidu.com/blog/2015/05/cross-mobile/
