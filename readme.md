@@ -96,14 +96,13 @@ https://zh.wikipedia.org/wiki/Unix%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%97%
 ## 开源网址 ##
 nginx的开源 http://tengine.taobao.org/
 
-## ftp ##
+## ftp ssh telnet ##
 http://my.oschina.net/pathenon/blog/66154
 https://curl.haxx.se/libcurl/c/
-
-## ssh ##
 http://www.ibm.com/developerworks/cn/aix/library/1006_lisali_sshlogon/
 https://www.ibm.com/developerworks/cn/linux/security/openssh/part1/
 https://github.com/PowerShell/Win32-OpenSSH
+https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8
 
 ## blog 博客 ##
 跨平台 移动开发 http://fex.baidu.com/blog/2015/05/cross-mobile/
