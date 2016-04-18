@@ -116,6 +116,10 @@ https://github.com/PowerShell/Win32-OpenSSH
 https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8
 https://en.wikipedia.org/wiki/Comparison_of_SSH_servers
 
+## ssl ##
+http://www.guideep.com/read?guide=5676830073815040
+https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0
+
 ## blog 博客 ##
 跨平台 移动开发 http://fex.baidu.com/blog/2015/05/cross-mobile/
 Sublime Text 2开发你的javascript http://www.cnblogs.com/xiaopen/archive/2012/05/13/Sublime_Text.html
