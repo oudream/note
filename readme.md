@@ -94,9 +94,18 @@ https://zh.wikipedia.org/wiki/MS-DOS%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8
 https://zh.wikipedia.org/wiki/Unix%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%97%E8%A1%A8
 
 ## 开源网址 ##
-www.oschina.net/ nginx的开源 http://tengine.taobao.org/ 
+nginx的开源 http://tengine.taobao.org/ 
 https://en.wikipedia.org/wiki/List_of_free_and_open-source_software_packages
 https://en.wikipedia.org/wiki/Comparison_of_source_code_hosting_facilities
+https://en.wikipedia.org/wiki/Category:Free_software_lists_and_comparisons
+http://www.github.com/
+https://sourceforge.net/
+www.codeproject.com
+https://www.gnu.org/
+https://developers.google.com/
+http://www.apache.org/index.html
+https://www.codeplex.com/
+www.oschina.net/
 
 ## ftp ssh telnet ##
 http://my.oschina.net/pathenon/blog/66154
