@@ -48,6 +48,7 @@ Gradle http://www.cnblogs.com/haochuang/p/4676510.html
 
 ## restful ##
 http://www.ruanyifeng.com/blog/2014/05/restful_api.html
+https://segmentfault.com/a/1190000004051246
 
 ## js ##
 javascript编程规范 https://github.com/fex-team/styleguide/blob/master/javascript.md#421-%E5%85%83%E7%B4%A0%E8%8E%B7%E5%8F%96 
