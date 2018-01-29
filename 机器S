@@ -1,0 +1,23 @@
+8G内存机：
+上网   (WIN7-64)：10.31.58.215 administrator ygct@12345678
+赛群(SER2008-64)：10.31.58.22 administrator ics@1234
+self   (WIN7-64)：10.31.58.115 administrator ygct@12345678
+后面(SER2008-64)：10.31.58.69 administrator ABCD123456-+
+小谢   (WIN7-64)：10.31.58.139 administrator 1a2b3c4d
+小菜   (WIN7-64)：10.31.58.38 YG-20160804ICCQ\administrator  1234.abcd
+
+4G内存机：
+测 1   (WIN7-32)：10.31.58.20 administrator ics@1234
+测 2   (WIN7-64)：10.31.58.137 administrator ygct@12345678
+工作机1(WIN7-32)：10.31.58.5 oudream 135246
+SVN (SER2008-64)：10.31.16.256 administrator ics@1234
+展厅 1 (WIN7-32)：10.31.16.3 administrator ygct@12345678
+展厅 2 (WIN7-32)：10.31.16.240 administrator ygct@12345678
+展厅 3 (WIN7-32)：10.31.16.241 administrator ygct@12345678
+
+编译服务器：
+虚拟机 (WIN7-32)：10.31.58.20 administrator icscc.123
+
+物理机上装的虚拟机
+215 - 81
+
