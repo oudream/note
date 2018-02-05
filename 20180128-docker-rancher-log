@@ -6,6 +6,11 @@ Parity        = 0
 FlowControl   = 0
 
 
+
+
+
+#proxy
+
 su -c 'yum install shadowsocks-libev'
 
 https://jingyan.baidu.com/article/cbf0e500b791142eaa28932f.html
@@ -76,7 +81,6 @@ http://morning.work/page/2015-12/install-shadowsocks-on-centos-7.html
 
 https://www.jianshu.com/p/d6414b5295b8
 
-
 mkdir -p /etc/systemd/system/docker.service.d
 
 vim /etc/systemd/system/docker.service.d/http-proxy.conf
@@ -89,7 +93,6 @@ systemctl daemon-reload
 systemctl show --property=Environment docker
 
 systemctl restart docker
-
 
 [Service]
 Environment="HTTP_PROXY=http://[proxy-addr]:[proxy-port]/" "HTTPS_PROXY=https://[proxy-addr]:[proxy-port]/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
@@ -104,3 +107,28 @@ https_proxy=http://10.31.58.78:1080/
 
 "FTP_PROXY=http://10.31.58.78:1080/" "HTTPS_PROXY=http://10.31.58.78:1080/" "HTTP_PROXY=http://10.31.58.78:1080/" "ftp_proxy=http://10.31.58.78:1080/" "http_proxy=http://10.31.58.78:1080/" "https_proxy=http://10.31.58.78:1080/" "NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com"
 
+
+
+
+
+
+
+
+# Error:
+DNS Checking loopback IP address 127.0.0.0/8, localhost or ::1 configured as the DNS server on the host file /etc/resolv.conf, can’t accept it
+
+ps aux |grep dnsmasq
+
+/etc/NetworkManager/NetworkManager.conf
+
+$ sudo restart network-manager
+$ sudo restart docker
+
+
+Credentials are no longer valid, please re-register this agent
+
+/etc/NetworkManager/NetworkManager.conf
+
+/etc/docker/daemon.json
+
+"dns": ["8.8.8.8", "8.8.4.4"]
