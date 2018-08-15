@@ -1,0 +1,218 @@
+ClassLoader
+
+ 当我准备想放弃的时候，突然我醒悟了一下。是不是，我修改参数的时候没有关掉docker引擎导致配置写不进去呢？
+ 但是，我就使用 service docker stop 命令先关掉docker的引擎。然后修改刚才的参数重启后。
+ 我没有使用 docker ps 去查看运行中的容器，直接有查看了刚才的那个参数的值，binggo,变成了no。
+ 当时，我心里大定，着一定OK了。果不其然，当我使用docker ps 命令去查看的是，
+ 终于没有看到我刚才修改的容器了，当我在用docker ps -a 查看所有的容器的时候，
+ 发现那个容器静静的躺在列表中。这个问题圆满解决。
+
+To use MySQL with Hive, you must download the MySQL Connector/J JDBC Driver from MySQL. Once downloaded to the Ambari Server host, run: 
+ambari-server setup --jdbc-db=mysql --jdbc-driver=/path/to/mysql/mysql-connector-java.jar
+
+NameNode installed on hadoop-master
+SNameNode installed on hadoop-slave1
+ResourceManager installed on hadoop-slave1
+History Server installed on hadoop-slave1
+HiveServer2 installed on hadoop-slave1
+HBase Master installed on hadoop-master
+Oozie Server installed on hadoop-slave1
+
+Traceback (most recent call last):
+  File "/var/lib/ambari-agent/cache/stacks/HDP/2.0.6/hooks/before-START/scripts/hook.py", line 43, in <module>
+    BeforeStartHook().execute()
+  File "/usr/lib/python2.6/site-packages/resource_management/libraries/script/script.py", line 375, in execute
+    method(env)
+  File "/var/lib/ambari-agent/cache/stacks/HDP/2.0.6/hooks/before-START/scripts/hook.py", line 38, in hook
+    setup_unlimited_key_jce_policy()
+  File "/var/lib/ambari-agent/cache/stacks/HDP/2.0.6/hooks/before-START/scripts/shared_initialization.py", line 225, in setup_unlimited_key_jce_policy
+    raise Fail("The unlimited key JCE policy needs to be installed; however the JCE policy zip is not specified.")
+resource_management.core.exceptions.Fail: The unlimited key JCE policy needs to be installed; however the JCE policy zip is not specified.
+
+resource_management.libraries.providers.hdfs_resource.WebHDFSCallException: Execution of 'curl -sS -L -w '%{http_code}' -X GET 'http://hadoop-master:50070/webhdfs/v1/tmp?op=GETFILESTATUS&user.name=hdfs'' returned status_code=502.
+
+
+http_proxy="http://10.31.58.78:1080/"
+https_proxy="https://10.31.58.78:1080/"
+no_proxy=localhost,127.0.0.0,127.0.1.1,127.0.1.1,local.home,10.31.58.86,10.31.58.99,10.31.58.101
+
+
+Important: You may also need to restart other services for the newly added services to function properly (for example, HDFS and YARN/MapReduce need to be restarted after adding Oozie). After closing this wizard, please restart all services that have the restart indicator  next to the service name.
+
+
+- Execute['export HIVE_CONF_DIR=/usr/hdp/current/hive-metastore/conf/conf.server ; /usr/hdp/current/hive-server2-hive2/bin/schematool -initSchema -dbType mysql -userName hive -passWord [PROTECTED] -verbose'] {'not_if': "ambari-sudo.sh su hive -l -s /bin/bash -c 'export HIVE_CONF_DIR=/usr/hdp/current/hive-metastore/conf/conf.server ; /usr/hdp/current/hive-server2-hive2/bin/schematool -info -dbType mysql -userName hive -passWord [PROTECTED] -verbose'", 'user': 'hive'}
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+
+127.0.0.1,localhost,10.31.58.19,10.31.58.*,10.31.16.*,hadoop-master,hadoop-slave1,hadoop-slave2
+
+
+
+### MAC ADDRESS
+第一个是自己的
+sudo ifconfig en0 ether a0:99:9b:0f:53:15
+sudo ifconfig en0 ether 28:D2:44:7E:99:E4
+	
+https://repo1.maven.org/maven2
+https://repo1.maven.org/maven2/
+https://repository.jboss.org/nexus/content/repositories/public/
+
+        <property>
+             <name>fs.defaultFS</name>
+             <value>hdfs://hadoop-master:9000</value>
+        </property>
+
+        时空行为数据挖掘初探及相关技术应用
+
+sysv-rc-conf
+
+https://10.31.16.253/svn/ygct_ics_cc4000/ddd/ygct/ygct_ics_cc4000/cc4000-alpha
+
+/ddd/ygct/ygct_ics_cc4000/nodejs
+
+### cmake
+cmake . -G "Xcode" --build "/ddd/communication/protobuf/protobuf/cmake" -B"/ddd/communication/protobuf/protobuf/cmake-xcode"
+
+
+
+### grpc
+# hellostreamingworld -> helloworld -> route_guide
+CMAKE_CURRENT_BINARY_DIR=/ddd/middle/hello-protobuf-grpc/cmake-build-debug/grpc-hellostreamingworld
+hw_proto_path=/ddd/middle/hello-protobuf-grpc/grpc-helloworld/protos
+_GRPC_CPP_PLUGIN_EXECUTABLE=/usr/local/bin/grpc_cpp_plugin
+hw_proto=/ddd/middle/hello-protobuf-grpc/grpc-helloworld/protos/hellostreamingworld.proto
+
+protoc --grpc_out "${CMAKE_CURRENT_BINARY_DIR}" --cpp_out "${CMAKE_CURRENT_BINARY_DIR}" -I "${hw_proto_path}" --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}" "${hw_proto}"
+
+Official GitHub mirror: github.com/justinfrankel/licecap
+
+
+
+### 流言终结者：
+magnet:?xt=urn:btih:34e456d1dc469df48d31d09129e506782e3c3f0e&dn=MythBusters.S20E11.Dynamite.Deposit.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:ce24d0e60452729bab143298bbb5648986dd30a5&dn=MythBusters.S20E10.Spike.In.The.Road.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:c36271a1b17a9ac722aba4079daf7ca823314490&dn=MythBusters.S20E09.Wild.Wild.West.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:4cae4b8afd66a0c78c85c923a1b7027f2e994e7e&dn=MythBusters.S20E08.Pane.in.The.Glass.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:773dd83fe23ad54c67e1fc2d3f3f4e9c446965ea&dn=MythBusters.S20E07.Fire.Arrow.vs.Gas.Tank.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:01766410fb70375910d687cb03cb38c9cc698b0c&dn=MythBusters.S20E06.Dead.Body.Double.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:172194c2ab52a7f3432fa12c475944476efdaca5&dn=MythBusters.S20E05.Invisible.Assassins.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:ad59a5941585ecd9215d420945220ab6c857b093&dn=MythBusters.S20E04.Rock.n.Roll.Road.Rage.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:99975effd26efc40082ff3900f8231935c1088cb&dn=MythBusters.S20E03.Earthquake.Water.Heater.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:e05b44666d47e0e4901a290114b484418c9d813d&dn=MythBusters.S20E02.Chimney.Cannon.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:d0f9b15884696b4fb7232cf12cd4dc685f4a5834&dn=MythBusters.S20E01.Heads.Will.Roll.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+
+alpha.wolfram.com
+
+
+
+### find
+mac:
+touch -t "201802210444" /tmp/start
+touch -t "201802210445" /tmp/end
+find /usr/local/bin -newer /tmp/start -not -newer /tmp/end
+linux:
+touch --date "2007-01-01" /tmp/start
+touch --date "2008-01-01" /tmp/end
+find /data/images -type f -newer /tmp/start -not -newer /tmp/end
+
+find . -iname "*" -type f -exec ln -s /home/oudream/untitled2/{} /fff/a \;
+
+find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
+
+
+### jupyter password
+from notebook.auth import passwd
+passwd()
+Enter password: 1
+Verify password: 1
+'sha1:8493e810f097:cffe7bf193dfd17ee26182cfbba826e29c2df795'
+
+
+
+### tmux
+# 鼠标设置
+touch ~/.tmux.conf
+set -g mouse off
+
+
+
+### ps
+ps -e | wc -l
+echo $SHELL
+ps -p $$
+echo $$
+
+
+
+### clipboard
+cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
+ll | xsel
+
+
+
+440606200710230337
+440402198004309041
+
+
+
+du -h -d 1
+df -hl
+
+
+
+### ls
+ls -ltT
+ls -lR|grep "^-"|wc -l
+tree -L 2
+find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
+
+
+
+### expr 注意 $a 后的空格，注意 \< 要有转义符
+###  {+, -} {*, /, %} {=, >, >=, <, <=, !=} expr2
+f=`expr $a \< $b`
+
+
+
+grep -E 'pattern1.*pattern2' filename
+
+sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
+scp -r local_folder remote_username@remote_ip:remote_folder
+
+dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
+
+sudo ufw status （查防火墙状态）
+
+export LD_LIBRARY_PATH=/.../bin_d:$LD_LIBRARY_PATH
+
+lsof -p 6317 | wc -l
+sudo netstat -anp | grep 3306 或者   sudo lsof -i -P | grep -i "listen"
+
+./configure --build=i386-linux --host=arm-linux --target=mipsel-linux --prefix=$(pwd)/_install
+
+开机后进入命令行界面：sudo systemctl set-default multi-user.target
+开机后进入图形界面：sudo systemctl set-default graphical.target
+
+git config --global http.proxy http://10.31.58.5:1080
+git config --global https.proxy https://10.31.58.5:1080
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+jupyter notebook --no-browser --port 8901 --ip=10.35.191.17
+
+
+
+### script / asciinema rec / asciinema auth
+script
+asciinema <command> -h
+asciinema rec demo.json
+asciinema rec -t "My git tutorial" # Record terminal and upload it to asciinema.org, specifying title:
+asciinema play demo.json
+asciinema play https://asciinema.org/a/difqlgx86ym6emrmd8u62yqu8
+asciicast2gif -t solarized-dark -s 2 -S 1 118274.json demo.gif
+-t：自定义名称，如 asciinema rec -t "run first blade app"
+-w：暂停时间最多多少秒，如 asciinema rec -w 2.5 demo.json，录制终端保存到本地，暂停时间最多2.5秒
