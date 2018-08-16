@@ -31,6 +31,38 @@ resource_management.core.exceptions.Fail: The unlimited key JCE policy needs to 
 
 resource_management.libraries.providers.hdfs_resource.WebHDFSCallException: Execution of 'curl -sS -L -w '%{http_code}' -X GET 'http://hadoop-master:50070/webhdfs/v1/tmp?op=GETFILESTATUS&user.name=hdfs'' returned status_code=502.
 
+	
+https://repo1.maven.org/maven2
+https://repo1.maven.org/maven2/
+https://repository.jboss.org/nexus/content/repositories/public/
+
+        <property>
+             <name>fs.defaultFS</name>
+             <value>hdfs://hadoop-master:9000</value>
+        </property>
+
+        时空行为数据挖掘初探及相关技术应用
+
+alpha.wolfram.com
+
+https://10.31.16.253/svn/ygct_ics_cc4000/ddd/ygct/ygct_ics_cc4000/cc4000-alpha
+
+/ddd/ygct/ygct_ics_cc4000/nodejs
+
+
+### 流言终结者：
+magnet:?xt=urn:btih:34e456d1dc469df48d31d09129e506782e3c3f0e&dn=MythBusters.S20E11.Dynamite.Deposit.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:ce24d0e60452729bab143298bbb5648986dd30a5&dn=MythBusters.S20E10.Spike.In.The.Road.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:c36271a1b17a9ac722aba4079daf7ca823314490&dn=MythBusters.S20E09.Wild.Wild.West.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:4cae4b8afd66a0c78c85c923a1b7027f2e994e7e&dn=MythBusters.S20E08.Pane.in.The.Glass.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:773dd83fe23ad54c67e1fc2d3f3f4e9c446965ea&dn=MythBusters.S20E07.Fire.Arrow.vs.Gas.Tank.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:01766410fb70375910d687cb03cb38c9cc698b0c&dn=MythBusters.S20E06.Dead.Body.Double.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:172194c2ab52a7f3432fa12c475944476efdaca5&dn=MythBusters.S20E05.Invisible.Assassins.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:ad59a5941585ecd9215d420945220ab6c857b093&dn=MythBusters.S20E04.Rock.n.Roll.Road.Rage.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:99975effd26efc40082ff3900f8231935c1088cb&dn=MythBusters.S20E03.Earthquake.Water.Heater.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:e05b44666d47e0e4901a290114b484418c9d813d&dn=MythBusters.S20E02.Chimney.Cannon.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+magnet:?xt=urn:btih:d0f9b15884696b4fb7232cf12cd4dc685f4a5834&dn=MythBusters.S20E01.Heads.Will.Roll.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
+
 
 http_proxy="http://10.31.58.78:1080/"
 https_proxy="https://10.31.58.78:1080/"
@@ -52,27 +84,10 @@ export PATH=$PATH:$HADOOP_HOME/bin
 
 
 
-### MAC ADDRESS
-第一个是自己的
-sudo ifconfig en0 ether a0:99:9b:0f:53:15
-sudo ifconfig en0 ether 28:D2:44:7E:99:E4
-	
-https://repo1.maven.org/maven2
-https://repo1.maven.org/maven2/
-https://repository.jboss.org/nexus/content/repositories/public/
+440606200710230337
+440402198004309041
 
-        <property>
-             <name>fs.defaultFS</name>
-             <value>hdfs://hadoop-master:9000</value>
-        </property>
 
-        时空行为数据挖掘初探及相关技术应用
-
-sysv-rc-conf
-
-https://10.31.16.253/svn/ygct_ics_cc4000/ddd/ygct/ygct_ics_cc4000/cc4000-alpha
-
-/ddd/ygct/ygct_ics_cc4000/nodejs
 
 ### cmake
 cmake . -G "Xcode" --build "/ddd/communication/protobuf/protobuf/cmake" -B"/ddd/communication/protobuf/protobuf/cmake-xcode"
@@ -92,23 +107,6 @@ Official GitHub mirror: github.com/justinfrankel/licecap
 
 
 
-### 流言终结者：
-magnet:?xt=urn:btih:34e456d1dc469df48d31d09129e506782e3c3f0e&dn=MythBusters.S20E11.Dynamite.Deposit.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:ce24d0e60452729bab143298bbb5648986dd30a5&dn=MythBusters.S20E10.Spike.In.The.Road.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:c36271a1b17a9ac722aba4079daf7ca823314490&dn=MythBusters.S20E09.Wild.Wild.West.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:4cae4b8afd66a0c78c85c923a1b7027f2e994e7e&dn=MythBusters.S20E08.Pane.in.The.Glass.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:773dd83fe23ad54c67e1fc2d3f3f4e9c446965ea&dn=MythBusters.S20E07.Fire.Arrow.vs.Gas.Tank.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:01766410fb70375910d687cb03cb38c9cc698b0c&dn=MythBusters.S20E06.Dead.Body.Double.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:172194c2ab52a7f3432fa12c475944476efdaca5&dn=MythBusters.S20E05.Invisible.Assassins.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:ad59a5941585ecd9215d420945220ab6c857b093&dn=MythBusters.S20E04.Rock.n.Roll.Road.Rage.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:99975effd26efc40082ff3900f8231935c1088cb&dn=MythBusters.S20E03.Earthquake.Water.Heater.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:e05b44666d47e0e4901a290114b484418c9d813d&dn=MythBusters.S20E02.Chimney.Cannon.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-magnet:?xt=urn:btih:d0f9b15884696b4fb7232cf12cd4dc685f4a5834&dn=MythBusters.S20E01.Heads.Will.Roll.HDTV.x264-W4F%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710
-
-alpha.wolfram.com
-
-
-
 ### find
 mac:
 touch -t "201802210444" /tmp/start
@@ -124,12 +122,17 @@ find . -iname "*" -type f -exec ln -s /home/oudream/untitled2/{} /fff/a \;
 find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
 
 
-### jupyter password
-from notebook.auth import passwd
-passwd()
-Enter password: 1
-Verify password: 1
-'sha1:8493e810f097:cffe7bf193dfd17ee26182cfbba826e29c2df795'
+
+### ls
+ls -ltT
+ls -lR|grep "^-"|wc -l
+tree -L 2
+find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
+
+
+
+### grep more less sort wc
+grep -E 'pattern1.*pattern2' filename
 
 
 
@@ -140,35 +143,9 @@ set -g mouse off
 
 
 
-### ps
-ps -e | wc -l
-echo $SHELL
-ps -p $$
-echo $$
-
-
-
-### clipboard
-cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
+### clipboard 
 ll | xsel
-
-
-
-440606200710230337
-440402198004309041
-
-
-
-du -h -d 1
-df -hl
-
-
-
-### ls
-ls -ltT
-ls -lR|grep "^-"|wc -l
-tree -L 2
-find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
+cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
 
 
 
@@ -178,31 +155,135 @@ f=`expr $a \< $b`
 
 
 
-grep -E 'pattern1.*pattern2' filename
-
-sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
-scp -r local_folder remote_username@remote_ip:remote_folder
-
-dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
-
-sudo ufw status （查防火墙状态）
-
+### gcc
+./configure --build=i386-linux --host=arm-linux --target=mipsel-linux --prefix=$(pwd)/_install
 export LD_LIBRARY_PATH=/.../bin_d:$LD_LIBRARY_PATH
 
-lsof -p 6317 | wc -l
-sudo netstat -anp | grep 3306 或者   sudo lsof -i -P | grep -i "listen"
 
-./configure --build=i386-linux --host=arm-linux --target=mipsel-linux --prefix=$(pwd)/_install
 
-开机后进入命令行界面：sudo systemctl set-default multi-user.target
-开机后进入图形界面：sudo systemctl set-default graphical.target
-
+### git
 git config --global http.proxy http://10.31.58.5:1080
 git config --global https.proxy https://10.31.58.5:1080
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 
+
+
+### node.js
+node xxx.js
+
+
+
+### python
 jupyter notebook --no-browser --port 8901 --ip=10.35.191.17
+### jupyter password
+from notebook.auth import passwd
+passwd()
+Enter password: 1
+Verify password: 1
+'sha1:8493e810f097:cffe7bf193dfd17ee26182cfbba826e29c2df795'
+
+python -m http.server 8893 # python3
+python -m SimpleHTTPServer 8893 # python2
+
+
+
+### sys info
+hostname
+cat /etc/shells
+cat /etc/passwd
+cat /etc/group
+cat /etc/issue
+w
+curl ifconfig.me/all
+curl ifconfig.me/host
+curl ifconfig.me/ua
+curl v4.ifconfig.co # returns my ip address near instantly from the command line regardless of where I call it from
+
+### 资源
+free -m # 查看内存使用量和交换区使用量
+uptime # 查看系统运行时间、用户数、负载
+df -h # 查看各分区使用情况
+du -sh <目录名> # 查看指定目录的大小
+du -h -d 1
+df -hl
+grep MemTotal /proc/meminfo # 查看内存总量
+grep MemFree /proc/meminfo # 查看空闲内存量
+cat /proc/loadavg # 查看系统负载
+
+### 系统
+uname -a # 查看内核/操作系统/CPU信息
+head -n 1 /etc/issue # 查看操作系统版本
+cat /proc/cpuinfo # 查看CPU信息
+hostname # 查看计算机名
+lspci -tv # 列出所有PCI设备
+lsusb -tv # 列出所有USB设备
+lsmod # 列出加载的内核模块
+env # 查看环境变量
+
+### 磁盘和分区
+mount | column -t # 查看挂接的分区状态
+fdisk -l # 查看所有分区
+swapon -s # 查看所有交换分区
+hdparm -i /dev/hda # 查看磁盘参数(仅适用于IDE设备)
+dmesg | grep IDE # 查看启动时IDE设备检测状况
+
+### 网络
+lsof -p 6317 | wc -l
+sudo netstat -anp | grep 3306 
+sudo lsof -i -P | grep -i "listen"
+ifconfig # 查看所有网络接口的属性
+iptables -L # 查看防火墙设置
+sudo ufw status （查防火墙状态）
+route -n # 查看路由表
+netstat -lntp # 查看所有监听端口
+netstat -antp # 查看所有已经建立的连接
+netstat -s # 查看网络统计信息
+
+
+### 进程
+ps -ef # 查看所有进程
+ps -e | wc -l
+echo $SHELL
+ps -p $$
+echo $$
+top # 实时显示进程状态
+
+### 用户
+w # 查看活动用户
+id <用户名> # 查看指定用户信息
+last # 查看用户登录日志
+cut -d: -f1 /etc/passwd # 查看系统所有用户
+cut -d: -f1 /etc/group # 查看系统所有组
+crontab -l # 查看当前用户的计划任务
+
+### 服务
+service --status-all
+systemctl list-units --type=service
+chkconfig --list # 列出所有系统服务
+chkconfig --list | grep on # 列出所有启动的系统服务
+sysv-rc-conf
+sudo systemctl set-default multi-user.target # 开机后进入命令行界面：
+sudo systemctl set-default graphical.target # 开机后进入图形界面
+
+
+### 程序
+rpm -qa # 查看所有安装的软件包
+dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
+
+### mac
+dscl . -list /Users
+dscl . -list /Groups
+dscacheutil -q group 
+
+
+
+### network
+telnet 192.168.1.1 25
+### MAC ADDRESS
+第一个是自己的
+sudo ifconfig en0 ether a0:99:9b:0f:53:15
+sudo ifconfig en0 ether 28:D2:44:7E:99:E4
 
 
 
@@ -216,3 +297,18 @@ asciinema play https://asciinema.org/a/difqlgx86ym6emrmd8u62yqu8
 asciicast2gif -t solarized-dark -s 2 -S 1 118274.json demo.gif
 -t：自定义名称，如 asciinema rec -t "run first blade app"
 -w：暂停时间最多多少秒，如 asciinema rec -w 2.5 demo.json，录制终端保存到本地，暂停时间最多2.5秒
+
+
+### tmux
+tmux rename-session [-t current-name] [new-name]
+### screen
+screen -S 8890.foo -X sessionname foobars	
+CtrlC  + a + [ # 滚动
+
+
+
+### remote 
+sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
+scp -r local_folder remote_username@remote_ip:remote_folder
+cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
+
