@@ -214,6 +214,11 @@ echo $SHELL
 ps -p $$
 echo $$
 top # 实时显示进程状态
+# mac
+sudo /usr/libexec/stackshot -i -u -p <pid>
+echo "thread backtrace all" | lldb -p <pid>
+# linux
+pstack 7013
 
 
 
@@ -251,7 +256,7 @@ dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
 dscl . -list /Users
 dscl . -list /Groups
 dscacheutil -q group 
-
+sudo spctl --master-disable
 
 
 ### network
