@@ -266,6 +266,7 @@ telnet 192.168.1.1 25
 sudo ifconfig en0 ether a0:99:9b:0f:53:15 ### mac2015
 sudo ifconfig en0 ether F0:DE:F1:B4:2A:82 ### thinkpade520
 sudo ifconfig en0 ether 28:D2:44:7E:99:E4 ### llb thinkpadt440 
+sudo ifconfig en0 ether 5C:51:4F:62:C8:6B ### llb thinkpadt440 - wifi 
 
 
 
@@ -292,7 +293,7 @@ CtrlC  + a + [ # 滚动
 
 ### remote 
 sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
-scp -r local_folder remote_username@remote_ip:remote_folder
+scp -r local_folder remote_username@remote_ip:remote_folder 
 cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
 
 
@@ -338,3 +339,45 @@ cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
 
 链接:https://pan.baidu.com/s/1ZOLlbgZLhGOMhR00yvACcg  密码:6chg
 链接:https://pan.baidu.com/s/1_2ot-y_rlUKOPR5omV7JQw  密码:cjpo
+
+
+
+# export
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+
+# host
+# hosts所在文件夹：
+# Windows 系统hosts位于 C:\Windows\System32\drivers\etc\hosts
+# Android（安卓）系统hosts位于 /etc/hosts
+# Mac（苹果电脑）系统hosts位于 /etc/hosts
+# iPhone（iOS）系统hosts位于 /etc/hosts
+# Linux系统hosts位于 /etc/hosts
+# 绝大多数Unix系统都是在 /etc/hosts
+
+# 修改hosts后生效方法：
+# Windows
+# 开始 -> 运行 -> 输入cmd -> 在CMD窗口输入
+ipconfig /flushdns
+
+# Linux
+# 终端输入
+sudo rcnscd restart
+# 对于systemd发行版，请使用命令
+sudo systemctl restart NetworkManager
+
+# Mac OS X终端输入
+sudo killall -HUP mDNSResponder
+# Android
+
+# 开启飞行模式 -> 关闭飞行模式
+# 通用方法
+# 拔网线(断网) -> 插网线(重新连接网络)
+# 如不行请清空浏览器缓存（老D建议不要使用国产浏览器，请使用谷歌Chrome浏览器）
+
+sudo shutdown -h +60 # mac
+sudo shutdown -P +60 # linux
+sudo shutdown -P 1:00 # linux
+
