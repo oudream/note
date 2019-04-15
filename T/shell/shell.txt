@@ -1,3 +1,55 @@
+### etc 环境变量配置文件加载优先级，三个阶段：系统运行、用户登录、软件运行
+# linux 
+/etc/environment    /etc/profile    ~/.bash_profile    ~/.bashrc    /etc/bashrc
+# /etc/profile全局环境变量文件，用户登录系统后首先会加载，系统上默认的shell主环境变量。每个用户登录后都会加载。
+# /etc/profile.d目录下的脚本文件在加载完/etc/profile文件后才会执行，这个目录下脚本有很多。
+# ~/.bash_profile：每个用户都可使用该文件设置专用于自己的shell信息，当用户登录时，该文件仅执行一次。默认情况下，他设置一些环境变量，执行用户的.bashrc文件。 
+# ~/.bashrc：该文件包含专用于自己的shell信息，当登录时以及每次打开新shell时，该文件被读取。 
+# /etc/bashrc：为每一个运行bash shell的用户执行此文件，当bash shell被打开时，该文件被读取
+# 区别：.bash_profile是在你每次登录的时候执行的；.bashrc是在你新开了一个命令行窗口时执行的。
+# 不想维护两个独立的配置文件，可以在.bash_profile中调用.bashrc 
+# if [ -f ~/.bashrc ]; then . ~/.bashrc fi
+
+
+
+# macos
+/etc/profile    /etc/paths    ~/.bash_profile    ~/.bash_login    ~/.profile    ~/.bashrc
+# 当然/etc/profile和/etc/paths是系统级别的，系统启动就会加载，后面几个是当前用户级的环境变量。
+# 后面3个按照从前往后的顺序读取，如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，
+# 如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。~/.bashrc没有上述规则，它是bash shell打开的
+# 时候载入的。值得一提的是这几个文件中，/etc/paths文件里面不用export那种方式添加环境变量，直接它的文件内容
+# 里面的每一行的路径就会被添加到环境变量中。
+
+
+
+### 环境变量
+BASH # Bash Shell的全路径 
+CDPATH # 用于快速进入某个目录。 
+PATH # 决定了shell将到哪些目录中寻找命令或程序 
+HOME # 当前用户主目录 
+HISTSIZE # 历史记录数 
+LOGNAME # 当前用户的登录名 
+HOSTNAME # 指主机的名称 
+SHELL # 当前用户Shell类型 
+LANGUGE # 语言相关的环境变量，多语言可以修改此环境变量 
+MAIL # 当前用户的邮件存放目录 
+PS1 # 基本提示符，对于root用户是#，对于普通用户是$
+
+# 命令
+echo         # 显示某个环境变量值 echo $PATH
+export       # 设置一个新的环境变量 export HELLO="hello" (可以无引号)
+env          # 显示所有环境变量
+set          # 显示本地定义的shell变量
+unset        # 清除环境变量 unset HELLO
+readonly     # 设置只读环境变量 readonly HELLO
+
+# C程序调用环境变量函数
+getenv() # 返回一个环境变量。
+setenv() # 设置一个环境变量。
+unsetenv() # 清除一个环境变量。
+
+
+
 ### git
 git submodule add https://github.com/chaconinc/DbConnector
 git clone --recursive https://github.com/chaconinc/MainProject
@@ -53,9 +105,87 @@ git config --global --unset https.proxy
 
 http_proxy="http://10.31.58.78:1080/"
 https_proxy="https://10.31.58.78:1080/"
-no_proxy=localhost,127.0.0.0,127.0.1.1,127.0.1.1,local.home,10.31.58.86,10.31.58.99,10.31.58.101
+no_proxy=localhost,127.0.0.0,127.0.0.1,127.0.1.1,local.home,10.31.58.86,10.31.58.99,10.31.58.101
 
-127.0.0.1,localhost,10.31.58.19,10.31.58.*,10.31.16.*,hadoop-master,hadoop-slave1,hadoop-slave2
+127.0.0.1,localhost,10.31.58.*,10.32.50.*,10.31.16.*,10.30.0.*,hadoop-master,hadoop-slave1,hadoop-slave2,192.168.99.*
+
+Scheme: https
+Proxy Host: www.51netflix.com
+Port: 1443
+
+
+
+### go golang
+alias go='http_proxy=http://127.0.0.1:1080/ https_proxy=http://127.0.0.1:1080/ go'
+export https_proxy=http://127.0.0.1:1080/
+export http_proxy=http://127.0.0.1:1080/
+export GO111MODULE=off
+
+export local_ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1)
+export http_proxy=http://${local_ip}:1080
+export https_proxy=$http_proxy
+export HTTPS_PROXY=$http_proxy
+export HTTP_PROXY=$http_proxy
+export ftp_proxy=socks5://${local_ip}:1086
+export FTP_PROXY=${ftp_proxy}
+export no_proxy=127.0.0.1,localhost,192.168.0.*,192.168.1.*,192.168.99.*,10.31.58.*,10.32.50.*,10.31.16.*,10.30.0.*,hadoop-master,hadoop-slave1,hadoop-slave2
+export NO_PROXY=$no_proxy
+
+ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1
+ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'
+
+$go env
+GOPATH="/home/ferghs/gowork:/home/ferghs/gowork/src/project1"
+Windows使用分号分割(;)
+
+
+
+### kubernetes
+minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy --docker-env no_proxy=$no_proxy
+minikube start --docker-env HTTP_PROXY=$http_proxy --docker-env HTTPS_PROXY=$https_proxy --docker-env NO_PROXY=$no_proxy
+
+export no_proxy=$no_proxy,$(minikube ip)
+export NO_PROXY=$no_proxy
+
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
+kubectl expose deployment hello-minikube --type=NodePort
+kubectl get pod
+curl $(minikube service hello-minikube --url)
+kubectl delete services hello-minikube
+kubectl delete deployment hello-minikube
+minikube stop
+
+
+
+### vmware
+#https://docs.vmware.com/cn/VMware-Fusion/11/com.vmware.fusion.using.doc/GUID-3E063D73-E083-40CD-A02C-C2047E872814.html
+vmrun -T ws start "/opt/VMware/win2k8r2.vmx" nogui
+# 启动无图形界面虚拟机  
+#（-T 是区分宿主机的类型，ws|server|server1|fusion|esx|vc|player，比较常用的是ws、esx和player）
+vmrun start "/opt/VMware/win2k8r2.vmx" gui
+# 启动带图形界面虚拟机
+vmrun stop "/opt/VMware/win2k8r2.vmx" hard | soft
+# 强制关闭虚拟机(相当于直接关电源) | 正常关闭虚拟机
+vmrun reset "/opt/VMware/win2k8r2.vmx" hard | soft
+# 冷重启虚拟机 | 热重启虚拟机
+vmrun suspend  "/opt/VMware/win2k8r2.vmx" hard | soft
+# 挂起虚拟机（可能相当于休眠）
+vmrun pause  "/opt/VMware/win2k8r2.vmx"
+# 暂停虚拟机
+vmrun unpause  "/opt/VMware/win2k8r2.vmx"
+# 停止暂停虚拟机    
+vmrun list 
+# 列出正在运行的虚拟机
+ps aux | grep vmx 
+# 另一种查看正在运行虚拟机的方法
+vmrun -T ws snapshot "/opt/VMware/win2k8r2.vmx" snapshotName
+# 创建一个快照（snapshotName 快照名）
+vmrun -T ws reverToSnapshot "/opt/VMware/win2k8r2.vmx" snapshotName 
+# 从一个快照中恢复虚拟机（snapshotName 快照名）
+vmrun -T ws listSnapshots "/opt/VMware/win2k8r2.vmx"
+# 列出虚拟机快照数量及名称
+vmrun -T ws deleteSnapshot "/opt/VMware/win2k8r2.vmx" snapshotName
+# 删除一个快照（snapshotName 快照名）
 
 
 
@@ -83,10 +213,17 @@ python -m SimpleHTTPServer 8893 # python2
 
 
 
+### install ubuntu
+# 合上盖子想不休眠，需要进行以下修改：
+sudo sed -i 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/systemd/logind.conf
+# 修改完成后重启系统服务：
+systemctl restart systemd-logind
+# 该方法除了适用于Ubuntu 18.04外，还适用于Ubuntu 16.04版本，其它的版本没有测试，应该问题不大。
+
 
 
 ### find
-mac:
+macos:
 touch -t "201802210444" /tmp/start
 touch -t "201802210445" /tmp/end
 find /usr/local/bin -newer /tmp/start -not -newer /tmp/end
@@ -102,8 +239,21 @@ find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc
 
 
 ### ls
-ls -ltT
-ls -lR|grep "^-"|wc -l
+# -X 根据扩展名排序
+# -S 根据文件大小排序
+# -t 以文件修改时间排序
+# -v 根据版本进行排序
+# -U 不进行排序;依文件系统原有的次序列出项目
+ls -a # –all 列出目录下的所有文件，包括以 . 开头的隐含文件
+ls -R # 显示子目录结构
+ls -F # 追加文件的类型标识符，具体含义：“*”表示具有可执行权限的普通文件，“/”表示目录，“@”表示符号链接，“|”表示命令管道FIFO，“=”表示sockets套接字。
+ls -S # 由大到小排序
+ls -Sr # 从小到大排序
+ls -t # 从新到旧
+ls -tr # 从旧到新
+ls -h # –human-readable
+ls -T # 长日期格式
+ls -lR | grep "^-" | wc -l # 统计目录数量
 tree -L 2
 find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc -l); echo "$dir : $count"; done
 ls | sed "s:^:`pwd`/:"   # full path
@@ -115,13 +265,6 @@ find $PWD -maxdepth 1  | xargs ls -ld
 ### grep more less sort wc
 grep -E 'pattern1.*pattern2' filename
 ls -lR | grep '^./\|.ipynb$'
-
-
-
-### tmux
-# 鼠标设置
-touch ~/.tmux.conf
-set -g mouse off
 
 
 
@@ -139,6 +282,22 @@ var1=$(echo "scale=4; 3.44 / 5" | bc) # bc
 
 
 
+# alias 
+alias ll='ls -lt' # 设置别名
+alias -p # 查看已经设置的别名列表
+unalias ll # 删除别名
+alias ls='ls -la' # 如果别名已经指定过，
+# 要使以上别名失效并强制执行原始的 ls 命令，可使用以下语法：(忽略别名)
+'ls' # 或 \ls
+# 常用的别名：
+alias ls='ls --color=auto' # 输出显示为彩色
+alias la='ls -Fa'          # 列出所有文件
+alias ll='ls -Fls'         # 列出文件详细信息
+alias rm='rm -i'           # 删除前需确认
+alias cp='cp -i'           # 覆盖前需确认
+alias mv='mv -i'           # 覆盖前需确认
+alias vi='vim'             # 输入 vi 命令时使用 vim 编辑器
+
 ### 资源
 free -m # 查看内存使用量和交换区使用量
 uptime # 查看系统运行时间、用户数、负载
@@ -155,7 +314,8 @@ cat /proc/loadavg # 查看系统负载
 ### 系统
 hostname
 uname -a # 查看内核/操作系统/CPU信息
-cat /etc/issue
+cat /etc/issue # 查看ubuntu的内核版本和发行版本号
+sudo lsb_release -a # 查看ubuntu的内核版本和发行版本号，更详细
 head -n 1 /etc/issue # 查看操作系统版本
 cat /proc/cpuinfo # 查看CPU信息
 hostname # 查看计算机名
@@ -171,6 +331,8 @@ set # 用来显示shell本地变量
 typeset -F # 只列出函数名
 declare -F # 只列出函数名
 
+
+
 ### 磁盘和分区
 fdisk -l # 查看所有分区
 swapon -s # 查看所有交换分区
@@ -185,7 +347,45 @@ umount /usr/local/bin/code
 sshfs -C -o reconnect oudream@10.31.58.132:/ddd /fff/r132ddd
 
 
+
+### 文件系统
+/dev/null，外号叫无底洞，你可以向它输出任何数据，它通吃，并且不会撑着！
+/dev/zero，是一个输入设备，你可你用它来初始化文件。该设备无穷尽地提供0，可以使用任何你需要的数目——设备提供的要多的多。他可以用于向设备或文件写入字符串0。
+### dd：用指定大小的块拷贝一个文件，并在拷贝的同时进行指定的转换
+dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64 | tr -d "=+/" | dd bs=32 count=1 2>/dev/null
+参数及注意：指定数字的地方若以下列字符结尾，则乘以相应的数字：b=512；c=1；k=1024；w=2
+# if=文件名：输入文件名，缺省为标准输入。即指定源文件。< if=input file >
+# of=文件名：输出文件名，缺省为标准输出。即指定目的文件。< of=output file >
+# ibs=bytes：一次读入bytes个字节，即指定一个块大小为bytes个字节。
+    obs=bytes：一次输出bytes个字节，即指定一个块大小为bytes个字节。
+    bs=bytes：同时设置读入/输出的块大小为bytes个字节。
+# cbs=bytes：一次转换bytes个字节，即指定转换缓冲区大小。
+# skip=blocks：从输入文件开头跳过blocks个块后再开始复制。
+# seek=blocks：从输出文件开头跳过blocks个块后再开始复制。 注意：通常只用当输出文件是磁盘或磁带时才有效，即备份到磁盘或磁带时才有效。
+# count=blocks：仅拷贝blocks个块，块大小等于ibs指定的字节数。
+# conv=conversion：用指定的参数转换文件。
+    ascii：转换ebcdic为ascii
+    ebcdic：转换ascii为ebcdic
+    block：把每一行转换为长度为cbs，不足部分用空格填充
+    unblock：使每一行的长度都为cbs，不足部分用空格填充
+    lcase：把大写字符转换为小写字符
+    ucase：把小写字符转换为大写字符
+    swab：交换输入的每对字节
+    noerror：出错时不停止
+    notrunc：不截短输出文件
+     sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。
+## 备份与恢复MBR，count=1指仅拷贝一个块；bs=512指块大小为512个字节。
+dd if=/dev/hda of=/root/image count=1 bs=512 备份磁盘开始的512个字节大小的MBR信息到指定文件：
+    # 
+dd if=/root/image of=/dev/had # 恢复
+# 增加swap分区文件大小
+dd if=/dev/zero of=/swapfile bs=1024 count=262144   # 第一步：创建一个大小为256M的文件：
+mkswap /swapfile                                    # 第二步：把这个文件变成swap文件：
+swapon /swapfile                                    # 第三步：启用这个swap文件：
+/swapfile    swap    swap    default   0 0          # 第四步：编辑/etc/fstab文件，使在每次开机时自动加载swap文件：
+
 ### 网络
+lsof -p <pid> # 查看打开的资源
 lsof -p 6317 | wc -l
 sudo netstat -anp | grep 3306 
 sudo lsof -i -P | grep -i "listen"
@@ -196,11 +396,15 @@ route -n # 查看路由表
 netstat -lntp # 查看所有监听端口
 netstat -antp # 查看所有已经建立的连接
 netstat -s # 查看网络统计信息
+ss -ltn # -l, --listening 显示监听状态的套接字 --tcp 仅显示 TCP套接字（sockets） -n --numeric 不解析服务名称
+ss -t -a # 显示TCP连接
+ss -pl # 查看进程使用的socket
 curl ifconfig.me/all
 curl ifconfig.me/host
 curl ifconfig.me/ua
 curl v4.ifconfig.co # returns my ip address near instantly from the command line regardless of where I call it from
-
+ufw disable # 关闭ubuntu的防火墙 
+apt-get remove iptables # 卸载了iptables
 
 
 ### 进程
@@ -210,39 +414,239 @@ ps -u root # 显示root进程用户信息
 ps -A # 显示进程信息
 pgrep nginx | xargs ps # 查找进程
 ps -e | wc -l
+pstree -p <进程号> # 进程树型
+# 当前 shell
 echo $SHELL
-ps -p $$
+ps -p $$ 
 echo $$
 top # 实时显示进程状态
-# mac
+ps -ef f # 查看线程，其实linux没有线程，都是用进程模仿的
+# macos
 sudo /usr/libexec/stackshot -i -u -p <pid>
 echo "thread backtrace all" | lldb -p <pid>
 # linux
 pstack 7013
+# 通过pid查看占用端口
+netstat -nap | grep 进程pid
+# 例：通过nginx进程查看对应的端口号
+ps -ef | grep nginx
+netstat -nap | grep nginx-pid
+# 例：查看8081号端口对应的进程名
+netstat -nap | grep 8081
 
 
 
 ### 用户
+# 管理员：root, 0；普通用户：1-65535；系统用户：1-499, 1-999(centos7) 作用：对守护进程获取资源进行权限分配；
+#    登录用户:500+, 1000+ 
+# 用户组GID：管理员组：root, 0；系统组：1-499, 1-999(centos7)；普通组：500+, 1000+ 
+# Linux安全上下文：运行中的程序：进程 (process)，以进程发起者的身份运行；
+#    进程所能够访问的所有资源的权限取决于进程的发起者的身份；
 w # 查看活动用户
 id <用户名> # 查看指定用户信息
 last # 查看用户登录日志
 cut -d: -f1 /etc/passwd # 查看系统所有用户
 cut -d: -f1 /etc/group # 查看系统所有组
 crontab -l # 查看当前用户的计划任务
-cat /etc/shells
-cat /etc/passwd
-cat /etc/group
+# 列出用户信息，文件列表，警告: 不要手动编辑这些文件。有些工具可以更好的处理锁定、避免数据库错误。
+cat /etc/shadow	# 保存用户安全信息
+cat /etc/passwd	# 用户账户信息
+cat /etc/gshadow # 保存组账号的安全信息
+cat /etc/group # 定义用户所属的组
+cat /etc/sudoers # 可以运行 sudo 的用户
+cat /home/* # 主目录
+### 用户组名
+# adm     类似 wheel 的管理器群组.
+# ftp     /srv/ftp/	访问 FTP 服务器.
+# games	  /var/games	访问一些游戏。
+# log     访问 syslog-ng 创建的 /var/log/ 日志文件.	
+# http    /srv/http/	访问 HTTP 服务器文件.
+# sys     Right to administer printers in CUPS.
+# systemd-journal  /var/log/journal/* 以只读方式访问系统日志，和 adm 和 wheel 不同. 不在此组中的用户仅能访问自己生成的信息。
+# users   标准用户组.
+# uucp    /dev/ttyS[0-9]+, /dev/tts/[0-9]+, /dev/ttyUSB[0-9]+, /dev/ttyACM[0-9]+	串口和 USB 设备，例如猫、手柄 RS-232/串口。
+# wheel   管理组，通常用于　sudo　和 su 命令权限。systemd 会允许非　root 的 wheel 组用户启动服务。
+### 用户管理 useradd usermod userdel ，useradd 与 usermod 参数一样
+useradd [options] login
+usermod [OPTION] login
+# -u UID: 新UID
+# -g GID: 新基本组
+# -G GROUP1[,GROUP2,...[,GROUPN]]]：新附加组，原来的附加组将会被覆盖；若保留原有，则要同时使用-a选项，表示append；
+# -a（追加到新组时）开关是必不可少的。否则，将从任何组中删除用户
+# -s SHELL：新的默认SHELL；
+# -c 'COMMENT'：新的注释信息；
+# -d HOME: 新的家目录；原有家目录中的文件不会同时移动至新的家目录；若要移动，则同时使用-m选项；
+# -l login_name: 新的名字；
+# -L: lock指定用户
+# -U: unlock指定用户
+# -e YYYY-MM-DD: 指明用户账号过期日期；
+# -f INACTIVE: 设定非活动期限；
+userdel [OPTION] login # -r: 删除用户家目录；
+# 例如：
+useradd testuser 创建用户testuser
+passwd testuser 给已创建的用户testuser设置密码
+# 说明：新创建的用户会在/home下创建一个用户目录testuser
+usermod --help 修改用户这个命令的相关参数
+userdel testuser 删除用户testuser   rm -rf testuser 删除用户testuser所在目录
+id user # 查看用户
+su <用户名> # 命令行用户切换，su是switch user的缩写，
+# 用户组管理： groupadd groupmod groupdel，groupadd 与 groupmod 参数一样
+groupadd(选项)(参数) # -g：指定新建工作组的id；-r：创建系统工作组，系统工作组的组ID小于500；
+#    -K：覆盖配置文件“/ect/login.defs”； -o：允许添加组ID号不唯一的工作组。
+groupadd -g 344 linuxde
+groupmod(选项)(参数)
+groupdel (参数)
+sudo usermod -a -G groupName userName # 增加用户到组，-a（追加）开关是必不可少的。否则，将从任何组中删除用户
+# 批量管理用户：
+#    成批添加/更新一组账户：newusers
+#    成批更新用户的口令：chpasswd
+gpasswd -a <用户账号名> <组账号名> # 向标准组中添加用户
+usermod -G <组账号名> <用户账号名> # 向标准组中添加用户
+gpasswd -d <用户账号名> <组账号名> # 从标准组中删除用户
+passwd [<用户账号名>]  # 设置用户口令：
+passwd -l <用户账号名> # 禁用用户账户口令
+passwd -S <用户账号名> # 查看用户账户口令状态
+passwd -u <用户账号名> # 恢复用户账户口令
+passwd -d <用户账号名> # 清除用户账户口令
+口令时效设置：修改 /etc/login.defs 的相关配置参数
+id：显示用户当前的uid、gid和用户所属的组列表
+groups：显示指定用户所属的组列表
+whoami：显示当前用户的名称
+w/who：显示登录用户及相关信息
+newgrp：用于转换用户的当前组到指定的组账号，用户必须属于该组才可以正确执行该命令
 
 
+### chown chmod 权限
 
-### 服务
-service --status-all
+# drwxrwxrwx 是10个空间保持值。你可以忽略第一个，然后有 3组 3。第一集为所有者，第二个集为该组，最后一集为世界。
+# 第一个字符表示文件类型。
+-表示该文件是一个普通文件
+d表示该文件是一个目录，字母"d"，是dirtectory(目录)的缩写。注意：目录或者是特殊文件，这个特殊文件存放其他文件或目录的相关信息
+l表示该文件是一个链接文件。字母"l"是link(链接)的缩写，类似于windows下的快捷方式
+b的表示块设备文件(block)，一般置于/dev目录下，设备文件是普通文件和程序访问硬件设备的入口，是很特殊的文件。没有文件大小，只有一个主设备号和一个辅设备号。一次传输数据为一整块的被称为块设备，如硬盘、光盘等。最小数据传输单位为一个数据块(通常一个数据块的大小为512字节)
+c表示该文件是一个字符设备文件(character)，一般置于/dev目录下，一次传输一个字节的设备被称为字符设备，如键盘、字符终端等，传输数据的最小单位为一个字节
+p表示该文件为命令管道文件。与shell编程有关的文件
+s表示该文件为sock文件。与shell编程有关的文件
+# r表是读 (Read) 、w表示写(Write) 、x表示执行 (eXecute)
+
+chmod [class] [operator] [permission] 文件
+chmod ［who］ ［+ | - | =］ ［mode］ 文件名
+chmod [ugoa] [+ or -] [rwx] 文件
+# 权限范围：u ：目录或者文件的当前的用户；g ：目录或者文件的当前的群组；
+#    o ：除了目录或者文件的当前用户或群组之外的用户或者群组；a ：所有的用户及群组
+# 权限代号：r ：读权限，用数字4表示；w ：写权限，用数字2表示；x ：执行权限，用数字1表示
+#    - ：删除权限，用数字0表示；s ：特殊权限；r=4，w=2，x=1; 若要rw-属性则4+2=6；
+chmod u+x，g-w，o todo.txt
+
+chown [选项] 用户或组 文件
+- R 递归式地改变指定目录及其下的所有子目录和文件的属组。
+chgrp [选项] group filename?
+- R 递归式地改变指定目录及其下的所有子目录和文件的属组。
+
+### 服务 Systemd 
+service --status-all systemctl
 systemctl list-units --type=service
 chkconfig --list # 列出所有系统服务
 chkconfig --list | grep on # 列出所有启动的系统服务
 sysv-rc-conf
 sudo systemctl set-default multi-user.target # 开机后进入命令行界面：
 sudo systemctl set-default graphical.target # 开机后进入图形界面
+systemctl list-units --all --type=service --no-pager # List all services
+sudo systemctl enable httpd # systemctl enable test.service # 开机启动
+sudo systemctl disable httpd # systemctl disable test.service # 开机不启动
+sudo systemctl start httpd # 启动服务
+sudo systemctl status httpd # 查看服务的状态
+sudo systemctl stop httpd.service # 停止服务
+sudo systemctl kill httpd.service # 服务停不下来。这时候就不得不"杀进程"了
+# 配置文件主要放在 /usr/lib/systemd/system 目录，也可能在 /etc/systemd/system
+systemctl cat sshd.service # 查看配置文件
+# [Unit] 区块：启动顺序与依赖关系
+#    Description 字段给出当前服务的简单描述，Documentation 字段给出文档位置
+#    After 和 Before 字段只涉及启动顺序，不涉及依赖关系
+#    Wants 字段：表示"弱依赖"关系，Requires 字段则表示"强依赖"关系
+# [Service] 区块：启动行为
+#    ExecStart 字段：定义启动进程时执行的命令；ExecReload 字段：重启服务时执行的命令; ExecStop 字段：停止服务时执行的命令; 
+#    ExecStartPre 字段：启动服务之前执行的命令；ExecStartPost 字段：启动服务之后执行的命令；ExecStopPost 字段：停止服务之后执行的命令
+#    Type：simple（默认值）：ExecStart字段启动的进程为主进程; oneshot（值）：类似于simple，但只执行一次
+#    Restart：no（默认值）：退出后不会重启；always：不管是什么退出原因，总是重启
+# [Install] 区块：Install区块，定义如何安装这个配置文件，即怎样做到开机启动。
+#    WantedBy：服务组，执行 systemctl enable sshd.service 命令后，就会在 /etc/systemd/system/multi-user.target.wants目录中存放 service 文件。
+
+
+[Unit]
+Description=Frp Server Service
+After=systemd-networkd.service network.target sshd.service
+
+[Service]
+Type=simple
+User=nobody
+Restart=on-failure
+RestartSec=5s
+ExecStart=/bin/bash -c '/fff/frp/frps -c /fff/frp/frps.ini'
+
+[Install]
+WantedBy=multi-user.target
+
+
+[Unit]
+Description=Frp Client Service
+After=systemd-networkd.service network.target sshd.service
+
+[Service]
+Type=simple
+User=nobody
+Restart=on-failure
+RestartSec=5s
+ExecStart=/bin/bash -c '/fff/frp/frpc -c /fff/frp/frpc.ini'
+ExecReload=/usr/bin/frpc reload -c /etc/frp/frpc.ini
+
+[Install]
+WantedBy=multi-user.target
+
+
+[Unit]
+Description=frp deamon
+After=network.target network-online.target sshd.service
+
+[Service]
+Type=simple
+WorkingDirectory=/fff/frp
+ExecStart=/bin/bash -c '/fff/frp/frps -c /fff/frp/frps-remote.ini'
+ExecStartPre=/bin/sh -c 'until nc -zv 13.112.200.162 7000; do sleep 3; done;'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+### Journalctl 查看和操作 Systemd 日志
+journalctl -b   # 当前引导的日志, 显示自最近重新引导以来收集的所有日记帐分录。
+journalctl --since "2015-01-10" --until "2015-01-11 03:00"
+journalctl --since yesterday
+journalctl --since 09:00 --until "1 hour ago"
+journalctl -u nginx.service --since today # 按单位, 按消息兴趣过滤
+journalctl _PID=8088 # 按进程，用户或组ID
+journalctl /usr/bin/bash # 按组件路径
+journalctl -k # 显示内核消息
+journalctl -n 20 # 工作原理完全一样 tail -n
+journalctl -f # 要积极跟踪日志，因为他们正在写的。你可能期望tail -f
+journalctl --disk-usage # 该杂志目前使用占用的磁盘空间量
+sudo journalctl --vacuum-size=1G # 将删除旧条目，直到磁盘上占用的总日志空间为所请求的大小
+
+
+
+
+
+### ufw apparmor selinux
+# apparmor
+sudo apparmor_status # 查询当前Apparmor的状态
+sudo aa-status # List the current status of apparmor
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+# 更改profile文件的状态
+sudo enforce <application_name> # 把某个profile置为enforce状态
+sudo complain <application_name> # 把某个profile置为complain状态
+# 在修改了某个profile的状态后，执行如下命令使之生效：
+sudo /etc/init.d/apparmor restart
 
 
 
@@ -252,21 +656,41 @@ dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
 
 
 
-### mac
+### macos
 dscl . -list /Users
 dscl . -list /Groups
 dscacheutil -q group 
 sudo spctl --master-disable
 
 
+
 ### network
 telnet 192.168.1.1 25
+# 如果不嫌多一步可以考虑用CTRL+]键，这时会强制退到telnet命令界面下，再用quit退出就行了，百试百灵。 
+# 其它就是用CTRL +C或CTRL+D两种方式来强行断开与远程的连接，但能支持这种命令的比较少。 
+# 最后的方法就是关掉telnet的窗口。
+# 监听本地端口
+nc -l -p 80   # 开启本机 80 端口 TCP 监听
+nc -l -p 80 > /tmp/log
+# 扫描端口
+nc -zv host.example.com 22           # 扫描 22 端口是否开放
+nc -zv host.example.com 22 80 443    # 扫描端口
+nc -zv host.example.com 20-30        # 扫描一个范围
+nc -zv -w 5 host.example.com 22-443  # -w 表示超时等待 5 秒
+# 作为简单的 Web Server
+nc -l 8080 < index.html
+curl localhost:8080
+# ping
+until ping -c1 google.com; do sleep 1; done;
+until [$(nc -zv 13.112.200.162 7000) == "*succeeded*"]; do sleep 1; done;
 ### MAC ADDRESS
 第一个是自己的
 sudo ifconfig en0 ether a0:99:9b:0f:53:15 ### mac2015
-sudo ifconfig en0 ether F0:DE:F1:B4:2A:82 ### thinkpade520
+sudo ifconfig en0 ether F0:DE:F1:B4:2A:82 ### oudream thinkpade520
+sudo ifconfig en0 ether C0:3F:D5:74:79:4F ### oudream pc
 sudo ifconfig en0 ether 28:D2:44:7E:99:E4 ### llb thinkpadt440 
 sudo ifconfig en0 ether 5C:51:4F:62:C8:6B ### llb thinkpadt440 - wifi 
+sudo ifconfig en0 ether C0-3F-D5-74-74-71 ### common pc 215
 
 
 
@@ -284,17 +708,85 @@ asciicast2gif -t solarized-dark -s 2 -S 1 118274.json demo.gif
 
 
 ### tmux
+tmux # 新建一个无名称的会话
+tmux new -s demo # 新建一个名称为demo的会话
+tmux detach # 断开当前会话，会话在后台运行
+tmux a # 默认进入第一个会话
+tmux a -t demo # 进入到名称为demo的会话
+tmux kill-session -t demo # 关闭demo会话
+tmux kill-server # 关闭服务器，所有的会话都将关闭
+tmux ls # 查看所有会话
+# 在每个tmux session 下，所有命令都以 ctrl+d(C-d) 开始。
+C-b	?	显示快捷键帮助文档
+C-b	d	断开当前会话
+C-b	D	选择要断开的会话
+C-b	Ctrl+z	挂起当前会话
+C-b	r	强制重载当前会话
+C-b	s	显示会话列表用于选择并切换
+C-b	:	进入命令行模式，此时可直接输入ls等命令
+C-b	c	新建窗口
+C-b	&	关闭当前窗口（关闭前需输入y or n确认）
+C-b	0~9	切换到指定窗口
+C-b	p	切换到上一窗口
+C-b	n	切换到下一窗口
+C-b	w	打开窗口列表，用于且切换窗口
+C-b	,	重命名当前窗口
+C-b	.	修改当前窗口编号（适用于窗口重新排序）
+C-b	f	快速定位到窗口（输入关键字匹配窗口名称）
+
+# 鼠标设置
+touch ~/.tmux.conf
+set -g mouse off
 tmux rename-session [-t current-name] [new-name]
+
 ### screen
-screen -S 8890.foo -X sessionname foobars	
-CtrlC  + a + [ # 滚动
+screen -S yourname -> 新建一个叫yourname的session
+screen -ls -> 列出当前所有的session
+screen -r yourname -> 回到yourname这个session
+screen -d yourname -> 远程detach某个session
+screen -d -r yourname -> 结束当前session并回到yourname这个session
+# 在每个screen session 下，所有命令都以 ctrl+a(C-a) 开始。
+C-a ? -> 显示所有键绑定信息
+C-a d -> detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
+C-a z -> 把当前session放到后台执行，用 shell 的 fg 命令则可回去。
+C-a c -> 创建一个新的运行shell的窗口并切换到该窗口
+C-a n -> Next，切换到下一个 window 
+C-a p -> Previous，切换到前一个 window 
+C-a 0..9 -> 切换到第 0..9 个 window
+C-a [Space] -> 由视窗0循序切换到视窗9
+C-a C-a -> 在两个最近使用的 window 间切换 
+C-a x -> 锁住当前的 window，需用用户密码解锁
+C-a w -> 显示所有窗口列表
 
 
 
-### remote 
+### remote sftp scp ssh ssh-keygen ssh-copy-id
 sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
 scp -r local_folder remote_username@remote_ip:remote_folder 
+# clipboard
+# From a X(7) man page:
 cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
+## SSH 的配置文件在 /etc/ssh/sshd_config 中，你可以看到端口号, 空闲超时时间等配置项。
+# 使用-p选项指定端口号, 直接连接并在后面加上要执行的命令就可以了
+
+ssh -p 56743 oudream@frp1.chuantou.org ls -l
+# 另外一个很赞的基于 SSH 的工具叫 sshfs. sshfs 可以让你在本地直接挂载远程主机的文件系统.
+# sshfs -o idmap=user user@hostname:/home/user ~/Remote
+sshfs -o idmap=user pi@10.42.0.47:/home/pi ~/Pi
+# 打开调试模式
+ssh -v 192.168.0.103
+# 把服务端的 X11 应用程序显示到客户端计算机上
+ssh -X oudream@10.31.58.75 xclock
+
+# ssh-keygen 用于：生成、管理和转换认证密钥
+# -t type:指定要生成的密钥类型，有rsa1(SSH1),dsa(SSH2),ecdsa(SSH2),rsa(SSH2)等类型，较为常用的是rsa类型
+# -C comment：提供一个新的注释
+# -b bits：指定要生成的密钥长度 (单位:bit)，对于RSA类型的密钥，最小长度768bits,默认长度为2048bits。DSA密钥必须是1024bits
+# -f filename:指定生成的密钥文件名字
+ssh-keygen -t rsa -C "kungeplay@gmail.com|blueskywww@126.com" # 此时在本机上生成如下一个公钥和一个私钥文件：
+ssh-copy-id -i ~/.ssh/id_rsa.pub “-p 3330 liujiakun@192.168.3.105“ # 拷贝公钥到服务器上，服务器端ssh的端口(比如为3330)
+ssh-keygen -F 222.24.51.147 # 查看是否已经添加了对应主机的密钥
+ssh-keygen -R 222.24.51.147 # 删除主机密钥 ~/.ssh/known_hosts
 
 
 
@@ -352,7 +844,7 @@ export LANG=en_US.UTF-8
 # hosts所在文件夹：
 # Windows 系统hosts位于 C:\Windows\System32\drivers\etc\hosts
 # Android（安卓）系统hosts位于 /etc/hosts
-# Mac（苹果电脑）系统hosts位于 /etc/hosts
+# macos（苹果电脑）系统hosts位于 /etc/hosts
 # iPhone（iOS）系统hosts位于 /etc/hosts
 # Linux系统hosts位于 /etc/hosts
 # 绝大多数Unix系统都是在 /etc/hosts
@@ -368,7 +860,7 @@ sudo rcnscd restart
 # 对于systemd发行版，请使用命令
 sudo systemctl restart NetworkManager
 
-# Mac OS X终端输入
+# macos X终端输入
 sudo killall -HUP mDNSResponder
 # Android
 
@@ -377,7 +869,10 @@ sudo killall -HUP mDNSResponder
 # 拔网线(断网) -> 插网线(重新连接网络)
 # 如不行请清空浏览器缓存（老D建议不要使用国产浏览器，请使用谷歌Chrome浏览器）
 
-sudo shutdown -h +60 # mac
+
+
+### shutdown
+sudo shutdown -h +60 # macos
 sudo shutdown -P +60 # linux
 sudo shutdown -P 1:00 # linux
 
