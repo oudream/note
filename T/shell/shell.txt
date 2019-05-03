@@ -113,21 +113,29 @@ Scheme: https
 Proxy Host: www.51netflix.com
 Port: 1443
 
+minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy --docker-env no_proxy=$no_proxy
 
-
-### go golang
+### go golang proxy
 alias go='http_proxy=http://127.0.0.1:1080/ https_proxy=http://127.0.0.1:1080/ go'
 export https_proxy=http://127.0.0.1:1080/
 export http_proxy=http://127.0.0.1:1080/
 export GO111MODULE=off
 
-export local_ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1)
+### oudream-ubuntu1
+cd /fff/shadowsocksr
+python3 ./shadowsocks/local.py
+
+#export local_ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1)
+export local_ip=127.0.0.1
 export http_proxy=http://${local_ip}:1080
-export https_proxy=$http_proxy
-export HTTPS_PROXY=$http_proxy
 export HTTP_PROXY=$http_proxy
-export ftp_proxy=socks5://${local_ip}:1086
+export https_proxy=https://${local_ip}:1080
+export HTTPS_PROXY=$https_proxy
+#export ftp_proxy=socks5://${local_ip}:1086
+export ftp_proxy=socks5://${local_ip}:8118
 export FTP_PROXY=${ftp_proxy}
+export all_proxy=${ftp_proxy}
+export ALL_PROXY=${all_proxy}
 export no_proxy=127.0.0.1,localhost,192.168.0.*,192.168.1.*,192.168.99.*,10.31.58.*,10.32.50.*,10.31.16.*,10.30.0.*,hadoop-master,hadoop-slave1,hadoop-slave2
 export NO_PROXY=$no_proxy
 
@@ -140,6 +148,20 @@ Windows使用分号分割(;)
 
 
 
+### docker
+# docker-server control
+service docker start
+systemctl start docker
+service docker stop
+systemctl stop docker
+docker run -t -i ubuntu /bin/bash # start ubuntu in interaction
+docker exec -it $ContainerID /bin/bash 
+docker ps -a
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $INSTANCE_ID # Get an instance’s IP address
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.MacAddress}}{{end}}' $INSTANCE_ID # Get an instance’s MAC address
+docker inspect --format='{{.LogPath}}' $INSTANCE_ID # Get an instance’s log path
+docker volume create portainer_data
+docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 ### kubernetes
 minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy --docker-env no_proxy=$no_proxy
 minikube start --docker-env HTTP_PROXY=$http_proxy --docker-env HTTPS_PROXY=$https_proxy --docker-env NO_PROXY=$no_proxy
@@ -374,15 +396,18 @@ dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64 | tr -d "=+/" | dd bs=32 
     noerror：出错时不停止
     notrunc：不截短输出文件
      sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。
+## 拷贝内存内容到硬盘
+dd if=/dev/mem of=/root/mem.bin bs=1024 # (指定块大小为1k) 
 ## 备份与恢复MBR，count=1指仅拷贝一个块；bs=512指块大小为512个字节。
 dd if=/dev/hda of=/root/image count=1 bs=512 备份磁盘开始的512个字节大小的MBR信息到指定文件：
-    # 
 dd if=/root/image of=/dev/had # 恢复
-# 增加swap分区文件大小
+## 增加swap分区文件大小
 dd if=/dev/zero of=/swapfile bs=1024 count=262144   # 第一步：创建一个大小为256M的文件：
 mkswap /swapfile                                    # 第二步：把这个文件变成swap文件：
 swapon /swapfile                                    # 第三步：启用这个swap文件：
 /swapfile    swap    swap    default   0 0          # 第四步：编辑/etc/fstab文件，使在每次开机时自动加载swap文件：
+
+
 
 ### 网络
 lsof -p <pid> # 查看打开的资源
@@ -407,13 +432,109 @@ ufw disable # 关闭ubuntu的防火墙
 apt-get remove iptables # 卸载了iptables
 
 
-### 进程
+
+### 运行程序 bash 
+./rsync.sh &
+# 但是如上方到后台执行的进程，其父进程还是当前终端shell的进程，而一旦父进程退出，则会发送hangup信号给所有子进程，
+#    子进程收到hangup以后也会退出。如果我们要在退出shell的时候继续运行进程，则需要使用nohup忽略hangup信号，或者setsid将
+#    将父进程设为init进程(进程号为1)
+nohup ./rsync.sh &
+setsid ./rsync.sh &
+# 用 screen tmux 运行进程
+## 重定向
+${command} > file	# 将输出重定向到 file。
+${command} < file	# 将输入重定向到 file。
+${command} >> file	# 将输出以追加的方式重定向到 file。
+n > file	# 将文件描述符为 n 的文件重定向到 file。
+n >> file	# 将文件描述符为 n 的文件以追加的方式重定向到 file。
+n >& m	# 将输出文件 m 和 n 合并。
+n <& m	# 将输入文件 m 和 n 合并。
+<< tag	# 将开始标记 tag 和结束标记 tag 之间的内容作为输入。 
+
+
+### tmux
+tmux # 新建一个无名称的会话
+tmux new -s demo # 新建一个名称为demo的会话
+tmux detach # 断开当前会话，会话在后台运行
+tmux a # 默认进入第一个会话
+tmux a -t demo # 进入到名称为demo的会话
+tmux kill-session -t demo # 关闭demo会话
+tmux kill-server # 关闭服务器，所有的会话都将关闭
+tmux ls # 查看所有会话
+# 在每个tmux session 下，所有命令都以 ctrl+d(C-d) 开始。
+C-b	?	显示快捷键帮助文档
+C-b	d	断开当前会话
+C-b	D	选择要断开的会话
+C-b	Ctrl+z	挂起当前会话
+C-b	r	强制重载当前会话
+C-b	s	显示会话列表用于选择并切换
+C-b	:	进入命令行模式，此时可直接输入ls等命令
+C-b	c	新建窗口
+C-b	&	关闭当前窗口（关闭前需输入y or n确认）
+C-b	0~9	切换到指定窗口
+C-b	p	切换到上一窗口
+C-b	n	切换到下一窗口
+C-b	w	打开窗口列表，用于且切换窗口
+C-b	,	重命名当前窗口
+C-b	.	修改当前窗口编号（适用于窗口重新排序）
+C-b	f	快速定位到窗口（输入关键字匹配窗口名称）
+
+# 鼠标设置
+touch ~/.tmux.conf
+set -g mouse off
+tmux rename-session [-t current-name] [new-name]
+
+### screen
+screen -S yourname -> 新建一个叫yourname的session
+screen -ls -> 列出当前所有的session
+screen -r yourname -> 回到yourname这个session
+screen -d yourname -> 远程detach某个session
+screen -d -r yourname -> 结束当前session并回到yourname这个session
+# 在每个screen session 下，所有命令都以 ctrl+a(C-a) 开始。
+C-a ? -> 显示所有键绑定信息
+C-a d -> detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
+C-a z -> 把当前session放到后台执行，用 shell 的 fg 命令则可回去。
+C-a c -> 创建一个新的运行shell的窗口并切换到该窗口
+C-a n -> Next，切换到下一个 window 
+C-a p -> Previous，切换到前一个 window 
+C-a 0..9 -> 切换到第 0..9 个 window
+C-a [Space] -> 由视窗0循序切换到视窗9
+C-a C-a -> 在两个最近使用的 window 间切换 
+C-a x -> 锁住当前的 window，需用用户密码解锁
+C-a w -> 显示所有窗口列表
+
+
+
+### lsof
+lsof [参数][文件]
+-a 列出打开文件存在的进程
+-c<进程名> 列出指定进程所打开的文件
+-g  列出GID号进程详情
+-d<文件号> 列出占用该文件号的进程
++d<目录>  列出目录下被打开的文件
++D<目录>  递归列出目录下被打开的文件
+-n<目录>  列出使用NFS的文件
+-i<条件>  列出符合条件的进程。（4、6、协议、:端口、 @ip ）
+-p<进程号> 列出指定进程号所打开的文件
+-u  列出UID号进程详情
+-h 显示帮助信息
+-v 显示版本信息
+lsof /bin/bash # 查看谁正在使用某个文件，也就是说查找某个文件相关的进程
+lsof -u username # 列出某个用户打开的文件信息
+lsof -u ^root # 列出除了某个用户外的被打开的文件信息
+lsof -c mysql # 列出某个程序进程所打开的文件信息
+lsof -i udp:55 # 列出谁在使用某个特定的udp端口
+
+
+### 进程 -A 显示所有进程；-e 等于“-A”; e 显示环境变量；f 显示程序间的关系；-H 显示树状结构；u 指定用户的所有进程
 ps -ef # 查看所有进程
 ps -efw | grep nginx | xsel  # 显示所有命令，连带命令行
 ps -u root # 显示root进程用户信息
 ps -A # 显示进程信息
 pgrep nginx | xargs ps # 查找进程
+ps axuw | head -1; ps axuw | grep nc # 带标题
 ps -e | wc -l
+ps e -eH # 树状带环境变量
 pstree -p <进程号> # 进程树型
 # 当前 shell
 echo $SHELL
@@ -483,11 +604,11 @@ usermod [OPTION] login
 # -f INACTIVE: 设定非活动期限；
 userdel [OPTION] login # -r: 删除用户家目录；
 # 例如：
-useradd testuser 创建用户testuser
-passwd testuser 给已创建的用户testuser设置密码
+useradd testuser # 创建用户testuser
+passwd testuser # 给已创建的用户testuser设置密码
 # 说明：新创建的用户会在/home下创建一个用户目录testuser
 usermod --help 修改用户这个命令的相关参数
-userdel testuser 删除用户testuser   rm -rf testuser 删除用户testuser所在目录
+userdel testuser # 删除用户testuser   rm -rf testuser 删除用户testuser所在目录
 id user # 查看用户
 su <用户名> # 命令行用户切换，su是switch user的缩写，
 # 用户组管理： groupadd groupmod groupdel，groupadd 与 groupmod 参数一样
@@ -707,59 +828,6 @@ asciicast2gif -t solarized-dark -s 2 -S 1 118274.json demo.gif
 
 
 
-### tmux
-tmux # 新建一个无名称的会话
-tmux new -s demo # 新建一个名称为demo的会话
-tmux detach # 断开当前会话，会话在后台运行
-tmux a # 默认进入第一个会话
-tmux a -t demo # 进入到名称为demo的会话
-tmux kill-session -t demo # 关闭demo会话
-tmux kill-server # 关闭服务器，所有的会话都将关闭
-tmux ls # 查看所有会话
-# 在每个tmux session 下，所有命令都以 ctrl+d(C-d) 开始。
-C-b	?	显示快捷键帮助文档
-C-b	d	断开当前会话
-C-b	D	选择要断开的会话
-C-b	Ctrl+z	挂起当前会话
-C-b	r	强制重载当前会话
-C-b	s	显示会话列表用于选择并切换
-C-b	:	进入命令行模式，此时可直接输入ls等命令
-C-b	c	新建窗口
-C-b	&	关闭当前窗口（关闭前需输入y or n确认）
-C-b	0~9	切换到指定窗口
-C-b	p	切换到上一窗口
-C-b	n	切换到下一窗口
-C-b	w	打开窗口列表，用于且切换窗口
-C-b	,	重命名当前窗口
-C-b	.	修改当前窗口编号（适用于窗口重新排序）
-C-b	f	快速定位到窗口（输入关键字匹配窗口名称）
-
-# 鼠标设置
-touch ~/.tmux.conf
-set -g mouse off
-tmux rename-session [-t current-name] [new-name]
-
-### screen
-screen -S yourname -> 新建一个叫yourname的session
-screen -ls -> 列出当前所有的session
-screen -r yourname -> 回到yourname这个session
-screen -d yourname -> 远程detach某个session
-screen -d -r yourname -> 结束当前session并回到yourname这个session
-# 在每个screen session 下，所有命令都以 ctrl+a(C-a) 开始。
-C-a ? -> 显示所有键绑定信息
-C-a d -> detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
-C-a z -> 把当前session放到后台执行，用 shell 的 fg 命令则可回去。
-C-a c -> 创建一个新的运行shell的窗口并切换到该窗口
-C-a n -> Next，切换到下一个 window 
-C-a p -> Previous，切换到前一个 window 
-C-a 0..9 -> 切换到第 0..9 个 window
-C-a [Space] -> 由视窗0循序切换到视窗9
-C-a C-a -> 在两个最近使用的 window 间切换 
-C-a x -> 锁住当前的 window，需用用户密码解锁
-C-a w -> 显示所有窗口列表
-
-
-
 ### remote sftp scp ssh ssh-keygen ssh-copy-id
 sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
 scp -r local_folder remote_username@remote_ip:remote_folder 
@@ -876,3 +944,16 @@ sudo shutdown -h +60 # macos
 sudo shutdown -P +60 # linux
 sudo shutdown -P 1:00 # linux
 
+
+
+### redis
+## on macos
+brew install redis
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist # Start Redis server via “launchctl”.
+launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist # Stop Redis on autostart on computer start.
+redis-cli shutdown # Stop all the clients. Perform a blocking SAVE if at least one save point is configured. Flush the Append Only File if AOF is enabled. Quit the server.
+## on ubuntu
+sudo systemctl start redis
+sudo systemctl enable redis
+sudo systemctl restart redis
+sudo systemctl stop redis
