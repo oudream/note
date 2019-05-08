@@ -1,44 +1,5 @@
-make[1]: Leaving directory '/fff/libsodium-1.0.17/src'
-Making install in test
-make[1]: Entering directory '/fff/libsodium-1.0.17/test'
-Making install in default
-make[2]: Entering directory '/fff/libsodium-1.0.17/test/default'
-make[3]: Entering directory '/fff/libsodium-1.0.17/test/default'
-make[3]: Nothing to be done for 'install-exec-am'.
-make[3]: Nothing to be done for 'install-data-am'.
-make[3]: Leaving directory '/fff/libsodium-1.0.17/test/default'
-make[2]: Leaving directory '/fff/libsodium-1.0.17/test/default'
-make[2]: Entering directory '/fff/libsodium-1.0.17/test'
-make[3]: Entering directory '/fff/libsodium-1.0.17/test'
-make[3]: Nothing to be done for 'install-exec-am'.
-make[3]: Nothing to be done for 'install-data-am'.
-make[3]: Leaving directory '/fff/libsodium-1.0.17/test'
-make[2]: Leaving directory '/fff/libsodium-1.0.17/test'
-make[1]: Leaving directory '/fff/libsodium-1.0.17/test'
-make[1]: Entering directory '/fff/libsodium-1.0.17'
-make[2]: Entering directory '/fff/libsodium-1.0.17'
-make[2]: Nothing to be done for 'install-exec-am'.
- /bin/mkdir -p '/usr/lib/pkgconfig'
- /usr/bin/install -c -m 644 libsodium.pc '/usr/lib/pkgconfig'
-make[2]: Leaving directory '/fff/libsodium-1.0.17'
-make[1]: Leaving directory '/fff/libsodium-1.0.17'
-2019-04-05 22:41:06 INFO     util.py:94 loading libsodium from libsodium.so.23
-2019-04-05 22:41:07 INFO     shell.py:74 ShadowsocksR SSRR 3.2.2 2018-05-22
-IPv6 support
-Starting ShadowsocksR success
+d3xr43nUybLdph7cber0pOhbStdpc1s4FerXSEdBFcqN5EoI7mylTHWbo1FAV0BfVsDRHn7S7PcuJO6NAaisXKv2TjneS5LMXCdSRNEtTTTSPQUWChjVw63JwUL24aNyiimH4ozDAyXxnm7EW+qTep+d3k+4z/jbsputfvW8Dw8=
+d3xr43nUybLdph7cber0pOhbStdpc1s4
+d3xr43nUyb
 
-Congratulations, ShadowsocksR server install completed!
-Your Server IP        :  103.122.22.209
-Your Server Port      :  12125
-Your Password         :  123456Abc
-Your Protocol         :  origin
-Your obfs             :  http_simple_compatible
-Your Encryption Method:  chacha20-ietf
-
-Your QR Code: (For ShadowsocksR Windows, Android clients only)
- ssr://MTAzLjEyMi4yMi4yMDk6MTIxMjU6b3JpZ2luOmNoYWNoYTIwLWlldGY6aHR0cF9zaW1wbGVfY29tcGF0aWJsZTpNVEl6TkRVMlFXSmovP29iZnNwYXJhbT0=
-Your QR Code has been saved as a PNG file path:
- /fff/shadowsocks_r_qr.png
-
-Welcome to visit: https://teddysun.com/486.html
-Enjoy it!
+https://camo.githubusercontent.com/e874464b2f71c3404bfeda25a2c9c6516a41e956/687474703a2f2f7374617469632d7075626c69632d696d687577712e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f77726974696e672f636c696f6e2d7573696e672d646f636b65722d61732d6465762d656e762f312e706e67

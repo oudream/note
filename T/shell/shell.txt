@@ -1,3 +1,5 @@
+
+
 ### etc 环境变量配置文件加载优先级，三个阶段：系统运行、用户登录、软件运行
 # linux 
 /etc/environment    /etc/profile    ~/.bash_profile    ~/.bashrc    /etc/bashrc
@@ -19,7 +21,7 @@
 # 如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。~/.bashrc没有上述规则，它是bash shell打开的
 # 时候载入的。值得一提的是这几个文件中，/etc/paths文件里面不用export那种方式添加环境变量，直接它的文件内容
 # 里面的每一行的路径就会被添加到环境变量中。
-
+~/Library/Mobile\ Documents/com~apple~CloudDocs/ # iCloud path
 
 
 ### 环境变量
@@ -55,6 +57,42 @@ git submodule add https://github.com/chaconinc/DbConnector
 git clone --recursive https://github.com/chaconinc/MainProject
 git submodule update --remote DbConnector
 git submodule update --remote
+
+
+
+### svn
+# svn checkout path # 1、将文件checkout到本地目录（path是服务器上的目录） 简写：svn co
+svn checkout svn://192.168.1.1/pro/domain /ddd/localpath
+# svn add file # 2、往版本库中添加新的文件
+svn add test.php # (添加test.php)
+svn add *.php # (添加当前目录下所有的php文件)
+# svn commit -m "LogMessage" [-N] [--no-unlock] PATH # 3、将改动的文件提交到版本库 (如果选择了保持锁，就使用--no-unlock开关) 简写：svn ci
+svn commit -m "add test file for my test" test.php
+# svn lock -m "LockMessage" [--force] PATH # 4、加锁/解锁
+svn lock -m "lock test file" test.php
+svn unlock PATH
+# svn update -r m path # 5、更新到某个版本 简写：svn up
+svn update # 如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。
+svn update -r 200 test.php # (将版本库中的文件test.php还原到版本200)
+svn update test.php # (更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit) 
+# 1）svn status path # 6、查看文件或者目录状态（目录下的文件和子目录的状态，正常状态不显示）【?：不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】
+# 2）svn status -v path # (显示文件和子目录状态) 简写：svn st
+# 第一列保持相同，第二列显示工作版本号，第三和第四列显示最后一次修改的版本号和修改人。
+# 注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。
+# svn delete path -m "delete test fle" # 7、删除文件 简写：svn (del, remove, rm)
+svn delete svn://192.168.1.1/pro/domain/test.php -m "delete test file" # 或者直接svn delete test.php 然后再svn ci -m 'delete test file‘，推荐使用这种
+# svn log path # 8、查看日志
+svn log test.php # 显示这个文件的所有修改记录，及其版本号的变化
+# svn info path # 9、查看文件详细信息
+svn info test.php
+# svn diff path # 10、比较差异 (将修改的文件与基础版本比较) 简写：svn di
+svn diff test.php
+# svn diff -r m:n path # (对版本m和版本n比较差异)
+svn diff -r 200:201 test.php
+# svn merge -r m:n path # 11、将两个版本之间的差异合并到当前文件
+svn merge -r 200:205 test.php #（将版本200与205之间的差异合并到当前文件，但是一般都会产生冲突，需要处理一下）
+svn help # 12、SVN 帮助
+svn help ci
 
 
 
@@ -160,11 +198,19 @@ docker ps -a
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $INSTANCE_ID # Get an instance’s IP address
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.MacAddress}}{{end}}' $INSTANCE_ID # Get an instance’s MAC address
 docker inspect --format='{{.LogPath}}' $INSTANCE_ID # Get an instance’s log path
+docker system prune -a # clean cache
 docker volume create portainer_data
 docker run -d -p 9000:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+# Folder Directory
+#~/Library/Containers/com.docker.docker
+#/var/lib/docker
+
+
+
 ### kubernetes
-minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy --docker-env no_proxy=$no_proxy
+minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy --docker-env no_proxy=$no_proxy --docker-env HTTP_PROXY=$http_proxy --docker-env HTTPS_PROXY=$https_proxy --docker-env NO_PROXY=$no_proxy
 minikube start --docker-env HTTP_PROXY=$http_proxy --docker-env HTTPS_PROXY=$https_proxy --docker-env NO_PROXY=$no_proxy
+minikube ssh
 
 export no_proxy=$no_proxy,$(minikube ip)
 export NO_PROXY=$no_proxy
@@ -281,6 +327,11 @@ find . -maxdepth 1 -type d | while read dir; do count=$(find "$dir" -type f | wc
 ls | sed "s:^:`pwd`/:"   # full path
 ls | sed "s:^:`pwd`/:" | sed "s/^/$HOSTNAME:/g"
 find $PWD -maxdepth 1  | xargs ls -ld
+
+
+
+# ln
+ln -s /ddd/dir1 link-dir1 # create link link-dir1
 
 
 
@@ -490,6 +541,8 @@ screen -ls -> 列出当前所有的session
 screen -r yourname -> 回到yourname这个session
 screen -d yourname -> 远程detach某个session
 screen -d -r yourname -> 结束当前session并回到yourname这个session
+screen -X -S SCREENID kill # Kill Attached Screen in Linux
+screen -S SCREENNAME -p 0 -X quit
 # 在每个screen session 下，所有命令都以 ctrl+a(C-a) 开始。
 C-a ? -> 显示所有键绑定信息
 C-a d -> detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。 
@@ -502,7 +555,6 @@ C-a [Space] -> 由视窗0循序切换到视窗9
 C-a C-a -> 在两个最近使用的 window 间切换 
 C-a x -> 锁住当前的 window，需用用户密码解锁
 C-a w -> 显示所有窗口列表
-
 
 
 ### lsof
@@ -773,7 +825,55 @@ sudo /etc/init.d/apparmor restart
 
 ### 程序
 rpm -qa # 查看所有安装的软件包
-dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1
+## dpkg
+dpkg -L unixodbc | xargs -I {} cp {} ~/oudream/1 # 列出 unixodbc 并拷贝到目录……
+dpkg -i package.deb #安装包
+dpkg -r package #删除包
+dpkg -P package #删除包（包括配置文件）
+dpkg -L package #列出与该包关联的文件
+dpkg -l package #显示该包的版本
+dpkg --unpack package.deb #解开 deb 包的内容
+dpkg -S keyword #搜索所属的包内容
+dpkg -l #列出当前已安装的包
+dpkg -c package.deb #列出 deb 包的内容
+dpkg --configure package #配置包
+# example
+dpkg -i package #安装包
+dpkg -R /usr/local/src #安装一个目录下面所有的软件包
+dpkg --unpack package #解开一个包，如果和-R一起使用，参数可以是一个目录
+dpkg --configure package #重新配置和释放软件包
+dpkg -r package #删除包
+dpkg --merge-avail #合并包
+dpkg -P #删除包，包括配置文件
+dpkg -A package #从软件包里面读取软件的信息
+dpkg --update-avail #替代软件包的信息
+dpkg --forget-old-unavail #删除Uninstall的软件包信息
+dpkg --clear-avail #删除软件包的Avaliable信息
+dpkg -C #查找只有部分安装的软件包信息
+dpkg --compare-versions ver1 op ver2 #比较同一个包的不同版本之间的差别
+dpkg -b directory [filename] #建立一个deb文件
+dpkg -c filename #显示一个Deb文件的目录
+dpkg -p package #显示包的具体信息
+dpkg -S filename-search-pattern #搜索指定包里面的文件（模糊查询）
+dpkg -L package #显示一个包安装到系统里面的文件目录信息
+dpkg -s package #报告指定包的状态信息
+dpkg -l #显示所有已经安装的Deb包，同时显示版本号以及简短说明
+## apt-get , apt
+# apt-get是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。
+apt-get update # 升级安装包相关的命令,刷新可安装的软件列表(但是不做任何实际的安装动作)
+apt-get upgrade # 进行安装包的更新(软件版本的升级)
+apt-get dist-upgrade # 进行系统版本的升级(Ubuntu版本的升级)；如果系统提示某些软件包会被“保留”而不能被升级，则可以用 apt-get dist-upgrade 命令来升级所有软件包：
+do-release-upgrade # Ubuntu官方推荐的系统升级方式,若加参数-d还可以升级到开发版本,但会不稳定
+apt-get install [软件名称] # 安装一个新软件包
+apt-get remove [软件名称] # 卸载一个已安装的软件包（保留配置文档）
+apt-get remove --purge [软件名称] # 卸载一个已安装的软件包（删除配置文档）
+apt-get autoremove [软件名称] # 删除包及其依赖的软件包
+apt-get autoremove --purge [软件名称] # 删除包及其依赖的软件包+配置文件，比上面的要删除的彻底一点
+dpkg --force-all --purge [软件名称] # 有些软件很难卸载，而且还阻止了别的软件的应用，就能够用这个，但是有点冒险。
+## 一次性安装
+apt-get update -y ; apt-get upgrade -y && \
+apt-get install apt-utils wget openssh-server telnet vim passwd ifstat unzip iftop telnet samba net-tools lsof rsync gcc g++ cmake build-essential gdb gdbserver unixodbc unixodbc-dev -y && \
+# rm -rf /var/lib/apt/lists/*
 
 
 
@@ -829,14 +929,23 @@ asciicast2gif -t solarized-dark -s 2 -S 1 118274.json demo.gif
 
 
 ### remote sftp scp ssh ssh-keygen ssh-copy-id
+## SSH 的配置文件在 /etc/ssh/sshd_config 中，你可以看到端口号, 空闲超时时间等配置项。
+# 使用-p选项指定端口号, 直接连接并在后面加上要执行的命令就可以了
+sudo vim /etc/ssh/sshd_config
+# 找到PermitRootLogin prohibit-password一行，改为PermitRootLogin yes
+sed -i 's/#PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+# 服务器端的心跳机制，添加 # ClientAliveInterval表示每隔多少秒，服务器端向客户端发送心跳 # 表示上述多少次心跳无响应之后，会认为Client已经断开
+ClientAliveInterval 30
+ClientAliveCountMax 6
+sudo service ssh restart
 sftp get -r /usr/local/hadoop/tmp /ddd/hadoop/hadoop-3.1.0
 scp -r local_folder remote_username@remote_ip:remote_folder 
+scp -r /home/space/music/ root@vm-ubuntu1:/home/root/others/ # copy local to remote
+scp -r root@vm-ubuntu1:/home/root/others/ /home/space/music/ # copy remote to local
 # clipboard
 # From a X(7) man page:
 cat /fff/tmp/000.txt | ssh -X 10.35.191.11 "DISPLAY=:0.0 pbcopy -i"
-## SSH 的配置文件在 /etc/ssh/sshd_config 中，你可以看到端口号, 空闲超时时间等配置项。
-# 使用-p选项指定端口号, 直接连接并在后面加上要执行的命令就可以了
-
 ssh -p 56743 oudream@frp1.chuantou.org ls -l
 # 另外一个很赞的基于 SSH 的工具叫 sshfs. sshfs 可以让你在本地直接挂载远程主机的文件系统.
 # sshfs -o idmap=user user@hostname:/home/user ~/Remote
@@ -847,15 +956,72 @@ ssh -v 192.168.0.103
 ssh -X oudream@10.31.58.75 xclock
 
 # ssh-keygen 用于：生成、管理和转换认证密钥
+# 通常，这个程序产生一个密钥对，并要求指定一个文件存放私钥，同时将公钥存放在附加了".pub"后缀的同名文件中。
+#      程序同时要求输入一个密语字符串(passphrase)，空表示没有密语(主机密钥的密语必须为空)。
+#      密语和口令(password)非常相似，但是密语可以是一句话，里面有单词、标点符号、数字、空格或任何你想要的字符。
+#      好的密语要30个以上的字符，难以猜出，由大小写字母、数字、非字母混合组成。密语可以用 -p 选项修改。
+#      丢失的密语不可恢复。如果丢失或忘记了密语，用户必须产生新的密钥，然后把相应的公钥分发到其他机器上去。
+#      RSA1的密钥文件中有一个"注释"字段，可以方便用户标识这个密钥，指出密钥的用途或其他有用的信息。
+#      创建密钥的时候，注释域初始化为"user@host"，以后可以用 -c 选项修改。
+#      密钥产生后，下面的命令描述了怎样处置和激活密钥。可用的选项有：
 # -t type:指定要生成的密钥类型，有rsa1(SSH1),dsa(SSH2),ecdsa(SSH2),rsa(SSH2)等类型，较为常用的是rsa类型
 # -C comment：提供一个新的注释
 # -b bits：指定要生成的密钥长度 (单位:bit)，对于RSA类型的密钥，最小长度768bits,默认长度为2048bits。DSA密钥必须是1024bits
 # -f filename:指定生成的密钥文件名字
-ssh-keygen -t rsa -C "kungeplay@gmail.com|blueskywww@126.com" # 此时在本机上生成如下一个公钥和一个私钥文件：
+ssh-keygen -t rsa -p "" # 此时在本机上生成如下一个公钥和一个私钥文件：
+cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+# 执行 # ssh localhost # 可以发现此时无需输入密码
+ssh-copy-id -i $HOME/.ssh/id_rsa.pub hadoop@192.168.24.129
+ssh-copy-id -i $HOME/.ssh/id_rsa.pub hadoop@192.168.24.130
 ssh-copy-id -i ~/.ssh/id_rsa.pub “-p 3330 liujiakun@192.168.3.105“ # 拷贝公钥到服务器上，服务器端ssh的端口(比如为3330)
 ssh-keygen -F 222.24.51.147 # 查看是否已经添加了对应主机的密钥
 ssh-keygen -R 222.24.51.147 # 删除主机密钥 ~/.ssh/known_hosts
+# $HOME/.ssh/identity: 使用SSH协议版本1时，$HOME/.ssh/identity文件包含RSA私钥。
+# $HOME/.ssh/identity.pub: 当你使用SSH协议版本一时，$HOME/.ssh/identity.pub文件包含用于进行身份验证的RSA公钥。用户应将其内容复制到用户希望使用RSA身份验证登录的远程系统的$HOME/.ssh/authorized_keys文件中。
+# $HOME/.ssh/id_dsa: $HOME/.ssh/id_dsa文件包含用户的协议版本2 DSA身份验证标识。
+# $HOME/.ssh/id_dsa.pub: 当您使用SSH协议版本2时，$HOME/.ssh/id_dsa.pub文件包含用于身份验证的DSA公钥。 用户应将其内容复制到用户希望使用DSA身份验证登录的远程系统的$HOME/.ssh/authorized_keys文件中。
+# $HOME/.ssh/id_rsa: $HOME/.ssh/id_rsa文件包含用户的协议版本2 RSA身份验证标识。 除了用户之外，任何人都不应该有读取此文件的权限。
+# $HOME/.ssh/id_rsa.pub: $HOME/.ssh/id_rsa.pub文件包含用于身份验证的协议版本2 RSA公钥。 应在用户希望使用公钥认证登录的所有计算机上将此文件的内容添加到$HOME/.ssh/authorized_keys。
 
+
+
+### expect 自动输入密码
+## 1, 重定向：用重定向方法实现交互的前提是指令需要有参数来指定密码输入方式，如ftp就有-i参数来指定使用标准输入来输入密码
+#    shell用重定向作为标准输入的用法是：cmd<<delimiter ,shell 会将分界符delimiter之后直到下一个同样的分界符之前的内容作为输入
+# 实现ftp自动登录并运行ls指令的用法如下：其中zjk为用户名，zjk123为密码
+ftp -i -n 192.168.21.46 <<EOF
+user zjk zjk123
+ls
+EOF
+## 2, 管道：跟重定向一样，指令同样要有参数来指定密码输入方式，如sudo的-S参数，passwd的-stdin参数
+#    所以实现sudo自动输入密码的脚本如下：其中zjk123为密码
+echo 'zjk123' | sudo -S cp file1 /etc/hosts
+#    实现自动修改密码的脚本写法如下：
+echo 'password' | passwd -stdin userName
+## 3, expect就是用来做交互用的，基本任何交互登录的场合都能使用，但是需要安装expect包 
+# send：用于向进程发送字符串
+# expect：从进程接收字符串
+# spawn：启动新的进程
+# interact：允许用户交互
+# 例子1：
+#!/usr/bin/expect
+set user root
+set ipaddress 45.77.131.42
+set passwd "Z-j8\$S5-E\}\[97\?1"
+set timeout 30
+spawn ssh $user@$ipaddress
+expect {
+    "*password:" { send "$passwd\r" }
+    "yes/no" { send "yes\r";exp_continue }
+}
+interact
+# 例子2：
+#!/usr/bin/expect
+set timeout 5
+spawn sudo ls -l
+expect "Password:"
+send "oudream\r"
+interact
 
 
 ### tar unzip 
